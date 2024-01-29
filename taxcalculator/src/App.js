@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
+export default function Form() {
+  const [salary, setSalary] = useState({
+    grossSalary: 0,
+    netSalary: 0,
+  })
+
+  function handleGrossSalary(e) {
+    setSalary({...salary,grossSalary: e.target.value});
+  }
+
+  function calculateNetSalary() {
+    const result = salary.grossSalary / 10;
+    return result;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <label>
+        Gross salary:
+        <input
+          placeholder='Input gross salary'
+          value={salary.grossSalary}
+          onChange={handleGrossSalary}
+        />
+      </label>
+      <p>
+        Your net salary is: 
+      </p>
+      <p>
+        {calculateNetSalary()}
+      </p>
+    </>
   );
 }
-
-export default App;
