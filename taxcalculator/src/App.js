@@ -7,6 +7,13 @@ export default function Form() {
     netSalary: 0,
   })
 
+  const [insurance, setInsurance] = useState({
+    total: 0,
+    socialInsurance: 0,
+    healthInsurance: 0,
+    unemploymentInsurance: 0,
+  })
+
   function handleGrossSalary(e) {
     setSalary({...salary,grossSalary: e.target.value});
   }
@@ -16,8 +23,30 @@ export default function Form() {
   }
 
   function calculateNetSalary() {
-    const result = salary.grossSalary / 10;
+    calculateInsurance();
+    const result = salary.grossSalary - insurance.total;
     return result;
+  }
+
+  function calculateInsurance() {
+    if (salary.baseSalary > 0) {
+      calculateInsuranceWithMoney(salary.baseSalary);
+    } else {
+      calculateInsuranceWithMoney(salary.grossSalary);
+    }
+  }
+
+  function calculateInsuranceWithMoney(money) {
+    if (money == 0) {
+      return;
+    }
+
+    setInsurance({...insurance,
+      total: money * 0.105, 
+      healthInsurance: money * 0.015, 
+      socialInsurance: money * 0.08, 
+      unemploymentInsurance: money * 0.01  
+    })
   }
 
   return (
@@ -39,6 +68,12 @@ export default function Form() {
           onChange={handleBaseSalary}
         />
       </label>
+      <p>
+        Insurance is: 
+      </p>
+      <p>
+        insurance.total
+      </p>
       <p>
         Your net salary is: 
       </p>
