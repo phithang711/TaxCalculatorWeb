@@ -1,0 +1,41 @@
+.numberResult {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    color: #000;
+    padding: 0;
+    text-align: right;
+    margin: 10px 0;
+}
+/*
+    underline text, bold, and align to the right, and add margin to the top and bottom
+    fixed width and height
+*/
+.label {
+    font-weight: bold;
+    color: #000;
+    padding: 0;
+    text-align: right;
+    margin: 10px 0;
+    text-decoration: underline;
+}
+
+/*
+    bottom border, and padding
+*/
+.value {
+    text-align: right;
+    margin: 10px 0;
+    padding: 5px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.unit {
+    font-size: 0.8em;
+    color: #000;
+    text-align: right;
+    margin: 10px 0;
+    font-style: italic;
+}
