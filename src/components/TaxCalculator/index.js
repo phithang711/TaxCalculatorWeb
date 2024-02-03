@@ -172,14 +172,14 @@ const calculateTax = (totalIncome, socialInsurance, dependants) => {
     return (
         <div className="calculatorForm">
             <NumberInput
-                label={"Total income"}
+                label={"Total income (gross salary)"}
                 id={"totalInput"}
                 setValueState={setTotalIncomeInputVal}
                 unit={"VND"}
             />
 
             <NumberInput
-                label={"Salary"}
+                label={"Salary (Salary for Insurance calculation)"}
                 id={"salaryInput"}
                 setValueState={setSalaryInputVal}
                 unit={"VND"}

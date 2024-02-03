@@ -3,7 +3,9 @@ import './index.css';
 export default function NumberInput({label, id, defaultValue = 0, setValueState, unit}) {
 
     const onInputChange = (e) => {
-        setValueState(e.target.value);
+        var n = parseInt((e.target.value).replace(/\D/g,''),10);  
+        setValueState(n);
+        e.target.value = n.toLocaleString();
     }
 
     return (
