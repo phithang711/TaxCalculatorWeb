@@ -1,10 +1,9 @@
 import './index.css';
 
-export default function NumberInput({label, id, defaultValue = 0, setValueState, onChange, unit}) {
+export default function NumberInput({label, id, defaultValue = 0, setValueState, unit}) {
 
     const onInputChange = (e) => {
         setValueState(e.target.value);
-        onChange(e);
     }
 
     return (
