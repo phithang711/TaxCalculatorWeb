@@ -1,12 +1,13 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: {browser: true, es2020: true},
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
-    'plugin:react/jsx-runtime'
+    'plugin:react/jsx-runtime',
+    'plugin:import/warnings'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts', 'dev'],
   parser: '@typescript-eslint/parser',
@@ -14,7 +15,7 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      {allowConstantExport: true},
     ],
     'prettier/prettier': [
       'warn',
@@ -28,6 +29,12 @@ module.exports = {
         singleQuote: true,
         printWidth: 120,
         jsxSingleQuote: true
+      }
+    ],
+    'import/order': [
+      'error',
+      {
+        'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type']
       }
     ]
   },

@@ -4,7 +4,7 @@ import { InitialHookStatus } from '@react-buddy/ide-toolbox'
 export const useInitial: () => InitialHookStatus = () => {
   const [status] = useState<InitialHookStatus>({
     loading: false,
-    error: false
+    error: false,
   })
   /*
     Implement hook functionality here.
