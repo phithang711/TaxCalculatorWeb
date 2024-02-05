@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
 
-import '~/styles/index.scss'
+import '~/index.scss'
 
 import App from './components/App.tsx'
 import ErrorBoundary from '~/components/ErrorBoundary'

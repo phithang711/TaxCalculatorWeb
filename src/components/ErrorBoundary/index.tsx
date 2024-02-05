@@ -2,7 +2,7 @@ import { useRouteError } from 'react-router-dom'
 
 import ErrorType from '~/types/error'
 import Page404 from '~/components/ErrorBoundary/Page404'
-import Page500 from '~/components/ErrorBoundary/Page500/Page500.tsx'
+import Page500 from '~/components/ErrorBoundary/Page500'
 
 const ErrorBoundary = () => {
   const error = useRouteError() as ErrorType

@@ -1,4 +1,4 @@
-const Page500 = () => {
+const Index = () => {
   return (
     <div>
       <h1>500</h1>
@@ -7,4 +7,4 @@ const Page500 = () => {
   )
 }
 
-export default Page500
+export default Index
