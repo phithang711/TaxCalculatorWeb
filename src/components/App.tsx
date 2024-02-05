@@ -1,19 +1,5 @@
-import { useState } from 'react'
-
 function App() {
-  const [counter, setCounter] = useState(0)
-  return (
-    <>
-      <button
-        onClick={() => {
-          setCounter((prev) => prev + 1)
-          throw new Error('Error')
-        }}
-        className='btn btn-primary'>
-        {counter} times
-      </button>
-    </>
-  )
+  return <>Tax is bullshit</>
 }
 
 export default App
