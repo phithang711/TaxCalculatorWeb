@@ -9,9 +9,11 @@ export const store = configureStore({
   reducer: {
     // counter: counterReducer,
   },
-  enhancers: (getDefaultEnhancers) => {
-    return getDefaultEnhancers().concat(sentryReduxEnhancer)
-  }
+  enhancers: (getDefaultEnhancers) => getDefaultEnhancers().concat(sentryReduxEnhancer),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    })
 })
 
 export type RootState = ReturnType<typeof store.getState>
