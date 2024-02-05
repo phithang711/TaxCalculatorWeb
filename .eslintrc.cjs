@@ -9,7 +9,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:import/warnings'
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts', 'dev'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts', 'src/dev'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'prettier'],
   rules: {

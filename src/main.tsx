@@ -1,14 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { DevSupport } from '@react-buddy/ide-toolbox'
 import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import '~/styles/index.scss'
 
-import App from './App.tsx'
-import { ComponentPreviews, useInitial } from '~/dev'
+import { DevSupport } from '@react-buddy/ide-toolbox'
+import { ErrorBoundary } from 'react-error-boundary'
+import App from './components/App.tsx'
 import { store } from '~/configs/store.config.ts'
+import { ComponentPreviews, useInitial } from '~/dev'
 
 const router = createBrowserRouter([
   {
@@ -19,10 +20,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <DevSupport ComponentPreviews={ComponentPreviews} useInitialHook={useInitial}>
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <DevSupport ComponentPreviews={ComponentPreviews} useInitialHook={useInitial}>
+          <RouterProvider router={router} />
+        </DevSupport>
       </Provider>
-    </DevSupport>
+    </ErrorBoundary>
   </React.StrictMode>
 )

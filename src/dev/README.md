@@ -42,7 +42,7 @@ props.
 
 ```jsx
 <ComponentPreview path="/Page">
-  <Page title={'Hello'}/>
+    <Page title={'Hello'}/>
 </ComponentPreview>
 ```
 
