@@ -5,11 +5,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import '~/styles/index.scss'
 
-import { DevSupport } from '@react-buddy/ide-toolbox'
 import { ErrorBoundary } from 'react-error-boundary'
 import App from './components/App.tsx'
 import { store } from '~/configs/store.config.ts'
-import { ComponentPreviews, useInitial } from '~/dev'
 
 const router = createBrowserRouter([
   {
@@ -22,9 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <Provider store={store}>
-        <DevSupport ComponentPreviews={ComponentPreviews} useInitialHook={useInitial}>
-          <RouterProvider router={router} />
-        </DevSupport>
+        <RouterProvider router={router} />
       </Provider>
     </ErrorBoundary>
   </React.StrictMode>
