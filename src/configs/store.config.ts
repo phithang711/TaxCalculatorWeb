@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { createReduxEnhancer } from '@sentry/react'
+import { api } from '~/configs/api.config.ts'
 
 const sentryReduxEnhancer = createReduxEnhancer({
   // Optionally pass options listed below
@@ -7,15 +8,13 @@ const sentryReduxEnhancer = createReduxEnhancer({
 
 export const store = configureStore({
   reducer: {
-    // counter: counterReducer,
+    [api.reducerPath]: api.reducer
   },
-  enhancers: (getDefaultEnhancers) => getDefaultEnhancers().concat(sentryReduxEnhancer),
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false
-    })
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(api.middleware)
+  },
+  enhancers: (getDefaultEnhancers) => {
+    return getDefaultEnhancers().concat(sentryReduxEnhancer)
+  },
+  devTools: process.env.NODE_ENV !== 'production'
 })
-
-export type RootState = ReturnType<typeof store.getState>
-
-export type AppDispatch = typeof store.dispatch
