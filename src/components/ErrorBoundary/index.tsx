@@ -1,18 +1,9 @@
 import { useRouteError } from 'react-router-dom'
 
 import ErrorType from '~/types/error'
-import Page404 from '~/components/ErrorBoundary/Page404'
-import Page500 from '~/components/ErrorBoundary/Page500'
 
 const ErrorBoundary = () => {
   const error = useRouteError() as ErrorType
-
-  switch (error?.status) {
-    case 404:
-      return <Page404 />
-    case 500:
-      return <Page500 />
-  }
 
   return (
     <div>
