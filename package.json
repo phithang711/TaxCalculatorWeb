@@ -69,7 +69,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix",
+      "yarn lint",
       "prettier --write",
       "git add"
     ]
