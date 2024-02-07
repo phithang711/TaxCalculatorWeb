@@ -29,12 +29,12 @@ yarn test # run tests
 Components are placed in `src/components` directory. Each component has its own directory with the following structure:
 
 ```
--- components
-  |-- ComponentName
-    |-- index.tsx
--- styles
-  |-- ComponentName
-    |-- ComponentName.scss
+ComponentName/
+  index.tsx
+  __tests__/
+    ComponentName.test.tsx
+  __mocks__/ # optional
+  ComponentName.scss
 ```
 
 ComponentName.scss is the style file for the component and
