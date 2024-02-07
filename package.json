@@ -5,11 +5,14 @@
   "type": "module",
   "husky": {
     "hooks": {
-      "pre-commit": "npn lint-staged"
+      "pre-commit": "npx lint-staged"
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": "yarn run lint:fix"
+    "*.{ts,tsx}": [
+      "yarn run lint:fix",
+      "git add ."
+    ]
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
