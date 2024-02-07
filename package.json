@@ -3,20 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 127.0.0.1",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix src --ext ts,tsx",
     "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
     "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
@@ -27,9 +23,14 @@
     "bootstrap-icons": "^1.11.3",
     "decimal.js": "^10.4.3",
     "global": "^4.4.0",
+    "i18next": "^23.8.2",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.4.3",
+    "i18next-resources-for-ts": "^1.5.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.5",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.0",
     "ts-node": "^10.9.2"
@@ -62,12 +63,5 @@
     "ts-jest": "^29.1.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.12"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix src --ext ts,tsx",
-      "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
-      "git add"
-    ]
   }
 }

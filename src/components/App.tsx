@@ -1,4 +1,5 @@
 import { RouterProvider } from 'react-router-dom'
+import { Suspense } from 'react'
 import { sentryCreateBrowserRouter } from '~/configs/sentry.config.ts'
 
 import About from '~/components/About'
@@ -24,7 +25,11 @@ const router = sentryCreateBrowserRouter([
 ])
 
 const App = () => {
-  return <RouterProvider router={router} />
+  return (
+    <Suspense>
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 }
 
 export default App
