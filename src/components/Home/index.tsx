@@ -1,4 +1,5 @@
 const Home = () => {
+  let a;
   return (
     <div className='d-flex align-items-center justify-content-center'>
       <div className='text-center'>
