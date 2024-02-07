@@ -1,4 +1,4 @@
-import {Decimal} from "decimal.js";
+import { Decimal } from 'decimal.js'
 
 interface InsuranceConfig {
   employee: InsuranceDetailConfig
@@ -50,4 +50,12 @@ interface TaxBracket {
   tax: Decimal
 }
 
-export type {PitState, SocialInsurance, SocialInsuranceDetails, Tax, TaxBracket, InsuranceConfig, InsuranceDetailConfig}
+export type {
+  PitState,
+  SocialInsurance,
+  SocialInsuranceDetails,
+  Tax,
+  TaxBracket,
+  InsuranceConfig,
+  InsuranceDetailConfig
+}
