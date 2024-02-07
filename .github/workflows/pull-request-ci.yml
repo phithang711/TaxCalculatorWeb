@@ -18,7 +18,7 @@ jobs:
       - name: Run install
         run: yarn install
 
-      - name: Run lint checks
+      - name: Run lint check
         run: yarn run lint
 
       - name: Run tests
