@@ -11,6 +11,8 @@ export default defineConfig({
     authToken: process.env.SENTRY_AUTH_TOKEN,
     org: "tekcatz",
     project: "tax-calculator-web",
+    debug: true,
+    disable: false
   })],
 
   server: {
