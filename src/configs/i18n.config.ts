@@ -9,7 +9,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: process.env.NODE_ENV !== 'production',
+    debug: import.meta.env.MODE !== 'production',
     fallbackLng: 'en'
   })
 
