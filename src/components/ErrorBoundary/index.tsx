@@ -5,6 +5,8 @@ import Page500 from '~/components/Page500'
 const ErrorBoundary = () => {
   const error = useRouteError() as ErrorType
 
+  console.error(error)
+
   if (error?.status === 500) {
     return <Page500 />
   }

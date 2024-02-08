@@ -1,12 +1,21 @@
+import { useEffect, useState } from 'react'
 import ErrorType from '~/types/error'
 
 const About = () => {
+  const [isTriggered, setIsTriggered] = useState(false)
+
   const triggerError = () => {
-    throw {
-      data: 'Error',
-      error: new Error('Error')
-    } as ErrorType
+    setIsTriggered(true)
   }
+
+  useEffect(() => {
+    if (isTriggered) {
+      throw {
+        data: 'Error',
+        error: new Error('Error')
+      } as ErrorType
+    }
+  }, [isTriggered])
 
   return (
     <div>
