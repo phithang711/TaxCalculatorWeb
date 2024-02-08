@@ -16,7 +16,7 @@ export default defineConfig({
   },
 
   css: {
-    devSourcemap: true
+    devSourcemap: process.env.NODE_ENV !== 'production'
   },
 
   resolve: {
@@ -27,6 +27,6 @@ export default defineConfig({
   },
 
   build: {
-    sourcemap: true
+    sourcemap: process.env.NODE_ENV !== 'production',
   }
 })
