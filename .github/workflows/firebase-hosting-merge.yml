@@ -18,14 +18,12 @@ jobs:
           node-version: 18.x
 
       - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install # will run `yarn install` command
+        run: yarn install
 
       - name: Run build
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build
+        run: yarn build:staging --mode staging
+        env:
+          SENTRY_AUTH_TOKEN: '${{ secrets.SENTRY_AUTH_TOKEN }}'
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react'
 import { createBrowserRouter } from 'react-router-dom'
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   Sentry.init({
     dsn: 'https://7c76828f832518879819c717d108ac5b@o4506692339433472.ingest.sentry.io/4506692341268480',
     integrations: [

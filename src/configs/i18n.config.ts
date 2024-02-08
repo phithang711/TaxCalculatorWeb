@@ -4,9 +4,13 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import Backend from 'i18next-http-backend'
 
 // eslint-disable-next-line import/no-named-as-default-member
-i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
-  debug: true,
-  fallbackLng: 'en'
-})
+i18n
+  .use(Backend)
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    debug: import.meta.env.MODE !== 'production',
+    fallbackLng: 'en'
+  })
 
 export default i18n
