@@ -1,30 +1,12 @@
-import { useEffect, useState } from 'react'
-import ErrorType from '~/types/error'
+import { useTranslation } from 'react-i18next'
 
 const About = () => {
-  const [isTriggered, setIsTriggered] = useState(false)
-
-  const triggerError = () => {
-    setIsTriggered(true)
-  }
-
-  useEffect(() => {
-    if (isTriggered) {
-      throw {
-        data: 'Error',
-        error: new Error('Error')
-      } as ErrorType
-    }
-  }, [isTriggered])
+  const { t } = useTranslation()
 
   return (
     <div>
-      <h1>About</h1>
-      {import.meta.env.MODE !== 'production' && (
-        <button className='btn btn-primary' onClick={triggerError}>
-          Trigger an error
-        </button>
-      )}
+      <h1 className='display-5 fw-bold'>{t('about.title')}</h1>
+      <p className='lead'>{t('about.content')}</p>
     </div>
   )
 }
