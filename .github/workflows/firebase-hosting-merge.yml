@@ -19,7 +19,7 @@ jobs:
           node-version: 18.x
 
       - name: Run install
-        run: yarn install --production
+        run: yarn install
 
       - name: Run build
         run: yarn build:staging --mode staging
