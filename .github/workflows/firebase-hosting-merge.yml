@@ -32,4 +32,3 @@ jobs:
           projectId: taxcalculatorweb-sandbox
         env:
           NODE_ENV: staging
-          SENTRY_AUTH_TOKEN: '${{secrets.SENTRY_AUTH_TOKEN}}'
