@@ -1,13 +1,24 @@
 import * as Sentry from '@sentry/react'
-import { createBrowserRouter } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  createRoutesFromChildren,
+  matchRoutes,
+  useLocation,
+  useNavigationType
+} from 'react-router-dom'
+import { useEffect } from 'react'
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   Sentry.init({
     dsn: 'https://7c76828f832518879819c717d108ac5b@o4506692339433472.ingest.sentry.io/4506692341268480',
+    tracePropagationTargets: ['taxcalculatorweb-sandbox.web.app'],
     integrations: [
-      new Sentry.BrowserTracing({
-        // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-        tracePropagationTargets: [/^https:\/\/yourserver\.io\/api/]
+      Sentry.reactRouterV6BrowserTracingIntegration({
+        useEffect,
+        useLocation,
+        useNavigationType,
+        createRoutesFromChildren,
+        matchRoutes
       }),
       Sentry.replayIntegration({
         maskAllText: false,
