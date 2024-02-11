@@ -1,7 +1,8 @@
 {
   "home": {
     "title": "Home",
-    "content": "Welcome to Tax Calculator webapp"
+    "content": "Welcome to Tax Calculator webapp",
+    "gross_income_input": "Add gross imcome"
   },
   "about": {
     "title": "About",
