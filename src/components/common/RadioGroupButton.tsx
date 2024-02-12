@@ -8,7 +8,7 @@ interface RadioProps {
 const RadioGroupButton = ({ name, items, value, onChange }: RadioProps) => {
   return (
     <>
-      {items.map((item) => {
+      {items.map((item) => (
         <div key={item.value}>
           <input
             name={name}
@@ -20,7 +20,7 @@ const RadioGroupButton = ({ name, items, value, onChange }: RadioProps) => {
           />{' '}
           <label htmlFor={name + item.value}>{item.label}</label>
         </div>
-      })}
+      ))}
     </>
   )
 }
