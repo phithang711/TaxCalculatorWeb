@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 
 import '~/index.scss'
 
-import App from './components/App.tsx'
+import App from './components/product/App.tsx'
 import { store } from '~/configs/store.config.ts'
 import '~/configs/i18n.config.ts'
 

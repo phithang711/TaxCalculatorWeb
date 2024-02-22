@@ -2,10 +2,10 @@ import { RouterProvider } from 'react-router-dom'
 import { Suspense } from 'react'
 import { sentryCreateBrowserRouter } from '~/configs/sentry.config.ts'
 
-import About from '~/components/About'
-import Home from '~/components/Home'
-import Page404 from '~/components/Page404'
-import ErrorBoundary from '~/components/ErrorBoundary'
+import About from '~/components/product/About'
+import Home from '~/components/product/Home'
+import Page404 from '~/components/product/Page404'
+import ErrorBoundary from '~/components/product/ErrorBoundary'
 
 const router = sentryCreateBrowserRouter([
   {
