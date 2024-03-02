@@ -13,7 +13,7 @@
     "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
     "preview": "vite preview",
     "test": "jest",
-    "prepare": "node_modules/.bin/husky-run install",
+    "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
