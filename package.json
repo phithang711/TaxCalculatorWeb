@@ -13,15 +13,18 @@
     "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
     "preview": "vite preview",
     "test": "jest",
-    "prepare": "husky",
+    "prepare": "node_modules/.bin/husky-run install",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
+    "@heroicons/react": "^2.1.1",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.1.0",
     "@sentry/react": "^7.100.1",
     "@sentry/vite-plugin": "^2.14.0",
+    "@storybook/theming": "^7.6.17",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
     "dayjs": "^1.11.10",
@@ -47,7 +50,6 @@
     "@storybook/react": "^7.6.17",
     "@storybook/react-vite": "^7.6.17",
     "@storybook/test": "^7.6.17",
-    
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@types/bootstrap": "^5.2.10",
