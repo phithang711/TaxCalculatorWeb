@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
-import NumTextField from '~/components/common/TextField/NumTextField'
-import RadioGroupButton from '~/components/common/Button/RadioGroupButton'
+import NumTextField from '../common/NumTextField'
+import RadioGroupButton from '../common/RadioGroupButton'
 
 enum CalculateSalaryBase {
   onGrossSalary = 'onGrossSalary',
@@ -29,6 +29,7 @@ const Home = () => {
         <NumTextField
           value={totalIncomeInputVal}
           onChange={(val: string) => {
+            console.log('value: ', val)
             const value = parseInt(val) || 0
             setTotalIncomeInputVal(value)
           }}
@@ -46,6 +47,7 @@ const Home = () => {
           value={salaryInputVal}
           disabled={chosenRadioValue !== CalculateSalaryBase.onBaseSalary}
           onChange={(val: string) => {
+            console.log('value: ', val)
             const value = parseInt(val) || 0
             setSalaryInputVal(value)
           }}
