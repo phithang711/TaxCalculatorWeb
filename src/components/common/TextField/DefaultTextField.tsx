@@ -4,11 +4,11 @@ interface TextFieldProps {
   label?: string
   placeholder?: string
   initialValue: string
-  classNames?: string
+  className?: string
   onChange: (val: string) => void
 }
 
-const CalTaxTextField = ({ label, initialValue, onChange, classNames, placeholder }: TextFieldProps) => {
+const CalTaxTextField = ({ label, initialValue, onChange, className: className, placeholder }: TextFieldProps) => {
   const [value, setValue] = useState(initialValue)
 
   const handleChange = (val: string) => {
@@ -21,7 +21,7 @@ const CalTaxTextField = ({ label, initialValue, onChange, classNames, placeholde
   }, [initialValue])
 
   return (
-    <div style={{ textAlign: 'left' }} className={classNames}>
+    <div style={{ textAlign: 'left' }} className={className}>
       {label && <label className='block text-sm font-medium text-gray-700 pb-1 ps-1'>{label}</label>}
       <input
         type='text'
