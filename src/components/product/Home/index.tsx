@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
-import NumTextField from '~/components/common/TextField/NumTextField'
-import RadioGroupButton from '~/components/common/Button/RadioGroupButton'
+import NumTextField from '~/components/common/TextField/NumTextField.tsx'
+import RadioGroupButton from '~/components/common/Button/RadioGroupButton.tsx'
 
 enum CalculateSalaryBase {
   onGrossSalary = 'onGrossSalary',

@@ -1,5 +1,6 @@
-import CalTaxTextField from '../TextField'
 import type { Meta, StoryObj } from '@storybook/react'
+
+import CalTaxTextField from '~/components/common/TextField/DefaultTextField'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
