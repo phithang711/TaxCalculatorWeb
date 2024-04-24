@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import NumTextField from '~/components/common/TextField/NumTextField.tsx'
 import RadioGroupButton from '~/components/common/Button/RadioGroupButton.tsx'
+import { Title } from '~/components/style/Theme'
 
 enum CalculateSalaryBase {
   onGrossSalary = 'onGrossSalary',
@@ -22,7 +23,7 @@ const Home = () => {
   return (
     <div className='d-flex align-items-center justify-content-center bg-light'>
       <div className='text-center'>
-        <h1 className='display-1 fw-bold'>{t('home.title')}</h1>
+        <Title>{t('home.title')}</Title>
         <p className='fs-3'>{t('home.content')}</p>
         <br></br>
         <p className='fs-3'>{t('home.gross_income_input')}</p>
