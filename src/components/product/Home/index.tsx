@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import NumTextField from '~/components/common/TextField/NumTextField.tsx'
 import RadioGroupButton from '~/components/common/Button/RadioGroupButton.tsx'
-import { Title } from '~/components/style/Theme'
+import { Title, DefaultText, Page } from '~/components/style/Theme'
 
 enum CalculateSalaryBase {
   onGrossSalary = 'onGrossSalary',
@@ -21,12 +21,12 @@ const Home = () => {
   const [chosenRadioValue, setChosenRadioValue] = useState<string | null>(CalculateSalaryBase.onGrossSalary)
 
   return (
-    <div className='d-flex align-items-center justify-content-center bg-light'>
+    <Page>
       <div className='text-center'>
         <Title>{t('home.title')}</Title>
-        <p className='fs-3'>{t('home.content')}</p>
+        <DefaultText>{t('home.content')}</DefaultText>
         <br></br>
-        <p className='fs-3'>{t('home.gross_income_input')}</p>
+        <DefaultText>{t('home.gross_income_input')}</DefaultText>
         <NumTextField
           value={totalIncomeInputVal}
           onChange={(val: string) => {
@@ -42,7 +42,7 @@ const Home = () => {
           onChange={setChosenRadioValue}
         />
         <br></br>
-        <p className='fs-3'>{t('home.net_income_input')}</p>
+        <DefaultText>{t('home.net_income_input')}</DefaultText>
         <NumTextField
           value={salaryInputVal}
           disabled={chosenRadioValue !== CalculateSalaryBase.onBaseSalary}
@@ -52,7 +52,7 @@ const Home = () => {
           }}
         />
       </div>
-    </div>
+    </Page>
   )
 }
 
