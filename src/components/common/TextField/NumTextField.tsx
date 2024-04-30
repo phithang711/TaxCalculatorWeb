@@ -1,5 +1,3 @@
-import { Input } from '~/components/style/Theme'
-
 interface NumTextFieldProps {
   value: number
   onChange: (val: string) => void
@@ -11,7 +9,14 @@ interface NumTextFieldProps {
 }
 
 const NumTextField = ({ onChange, disabled, ...rest }: NumTextFieldProps) => {
-  return <Input onChange={({ target: { value } }) => onChange(value)} disabled={disabled} {...rest} />
+  return (
+    <input
+      className='rounded-md w-full border border-gray-400 p-3 mb-5'
+      onChange={({ target: { value } }) => onChange(value)}
+      disabled={disabled}
+      {...rest}
+    />
+  )
 }
 
 export default NumTextField

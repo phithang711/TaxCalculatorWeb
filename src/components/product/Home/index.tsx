@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 import NumTextField from '~/components/common/TextField/NumTextField.tsx'
 import RadioGroupButton from '~/components/common/Button/RadioGroupButton.tsx'
-import { Title, DefaultText, Page } from '~/components/style/Theme'
 
 enum CalculateSalaryBase {
   onGrossSalary = 'onGrossSalary',
@@ -21,12 +22,17 @@ const Home = () => {
   const [chosenRadioValue, setChosenRadioValue] = useState<string | null>(CalculateSalaryBase.onGrossSalary)
 
   return (
-    <Page>
-      <div className='text-center'>
-        <Title>{t('home.title')}</Title>
-        <DefaultText>{t('home.content')}</DefaultText>
+    <div className='d-flex align-items-center bg-light'>
+      <Box
+        sx={{
+          margin: 5
+        }}>
+        <Typography variant='h1' color='primary'>
+          {t('home.title')}
+        </Typography>
+        <Typography variant='body2'>{t('home.content')}</Typography>
         <br></br>
-        <DefaultText>{t('home.gross_income_input')}</DefaultText>
+        <Typography variant='body2'>{t('home.gross_income_input')}</Typography>
         <NumTextField
           value={totalIncomeInputVal}
           onChange={(val: string) => {
@@ -42,7 +48,7 @@ const Home = () => {
           onChange={setChosenRadioValue}
         />
         <br></br>
-        <DefaultText>{t('home.net_income_input')}</DefaultText>
+        <Typography variant='body2'>{t('home.net_income_input')}</Typography>
         <NumTextField
           value={salaryInputVal}
           disabled={chosenRadioValue !== CalculateSalaryBase.onBaseSalary}
@@ -51,8 +57,8 @@ const Home = () => {
             setSalaryInputVal(value)
           }}
         />
-      </div>
-    </Page>
+      </Box>
+    </div>
   )
 }
 
