@@ -22,43 +22,42 @@ const Home = () => {
   const [chosenRadioValue, setChosenRadioValue] = useState<string | null>(CalculateSalaryBase.onGrossSalary)
 
   return (
-    <div className='d-flex align-items-center bg-light'>
-      <Box
-        sx={{
-          margin: 5
-        }}>
-        <Typography variant='h1' color='primary'>
-          {t('home.title')}
-        </Typography>
-        <Typography variant='body2'>{t('home.content')}</Typography>
-        <br></br>
-        <Typography variant='body2'>{t('home.gross_income_input')}</Typography>
-        <NumTextField
-          value={totalIncomeInputVal}
-          onChange={(val: string) => {
-            const value = parseInt(val) || 0
-            setTotalIncomeInputVal(value)
-          }}
-        />
-        <br></br>
-        <RadioGroupButton
-          name='salaryChosen'
-          items={salaryChosenItems}
-          value={chosenRadioValue}
-          onChange={setChosenRadioValue}
-        />
-        <br></br>
-        <Typography variant='body2'>{t('home.net_income_input')}</Typography>
-        <NumTextField
-          value={salaryInputVal}
-          disabled={chosenRadioValue !== CalculateSalaryBase.onBaseSalary}
-          onChange={(val: string) => {
-            const value = parseInt(val) || 0
-            setSalaryInputVal(value)
-          }}
-        />
-      </Box>
-    </div>
+    <Box
+      bgcolor={'lightgrey'}
+      sx={{
+        padding: 5
+      }}>
+      <Typography variant='h1' color='primary'>
+        {t('home.title')}
+      </Typography>
+      <Typography variant='body2'>{t('home.content')}</Typography>
+      <br></br>
+      <Typography variant='body2'>{t('home.gross_income_input')}</Typography>
+      <NumTextField
+        value={totalIncomeInputVal}
+        onChange={(val: string) => {
+          const value = parseInt(val) || 0
+          setTotalIncomeInputVal(value)
+        }}
+      />
+      <br></br>
+      <RadioGroupButton
+        name='salaryChosen'
+        items={salaryChosenItems}
+        value={chosenRadioValue}
+        onChange={setChosenRadioValue}
+      />
+      <br></br>
+      <Typography variant='body2'>{t('home.net_income_input')}</Typography>
+      <NumTextField
+        value={salaryInputVal}
+        disabled={chosenRadioValue !== CalculateSalaryBase.onBaseSalary}
+        onChange={(val: string) => {
+          const value = parseInt(val) || 0
+          setSalaryInputVal(value)
+        }}
+      />
+    </Box>
   )
 }
 
