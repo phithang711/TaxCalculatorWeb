@@ -1,3 +1,5 @@
+import Input from '@mui/material/Input'
+import Box from '@mui/material/Box'
 interface NumTextFieldProps {
   value: number
   onChange: (val: string) => void
@@ -10,13 +12,14 @@ interface NumTextFieldProps {
 
 const NumTextField = ({ onChange, disabled, ...rest }: NumTextFieldProps) => {
   return (
-    <input
-      className='rounded-md w-full border border-gray-400 p-3 mb-5'
-      onChange={({ target: { value } }) => onChange(value)}
-      disabled={disabled}
-      {...rest}
-    />
+    <Box borderRadius={16} border={1} height={50} display={'flex'} justifyContent={'center'}>
+      <Input
+        disableUnderline={true}
+        onChange={({ target: { value } }) => onChange(value)}
+        disabled={disabled}
+        {...rest}
+      />
+    </Box>
   )
 }
-
 export default NumTextField
