@@ -5,7 +5,9 @@
     "gross_income_input": "Add gross imcome",
     "net_income_input": "Add net income",
     "cal_on_gross_salary": "Calculator on your gross salary",
-    "cal_on_base_salary": "Calculator on your base salary"
+    "cal_on_base_salary": "Calculator on your base salary",
+    "net_salary": "Your net salary",
+    "cal_net_salary": "Calculate net salary"
   },
   "about": {
     "title": "About",

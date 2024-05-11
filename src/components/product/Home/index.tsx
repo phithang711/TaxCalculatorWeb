@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import ResultCard from './ResultCard/ResultCard'
 import NumTextField from '~/components/common/TextField/NumTextField.tsx'
 import RadioGroupButton from '~/components/common/Button/RadioGroupButton.tsx'
 
@@ -19,6 +21,7 @@ const Home = () => {
     { value: CalculateSalaryBase.onGrossSalary, label: t('home.cal_on_gross_salary') },
     { value: CalculateSalaryBase.onBaseSalary, label: t('home.cal_on_base_salary') }
   ]
+  const [isCalculateTax, setIsCalculateTax] = useState(false)
   const [chosenRadioValue, setChosenRadioValue] = useState<string | null>(CalculateSalaryBase.onGrossSalary)
 
   return (
@@ -57,6 +60,21 @@ const Home = () => {
           setSalaryInputVal(value)
         }}
       />
+      <br></br>
+      <Button
+        variant='contained'
+        onClick={() => {
+          setIsCalculateTax(true)
+        }}>
+        {t('home.cal_net_salary')}
+      </Button>
+      <br></br>
+      {isCalculateTax && (
+        <Box>
+          <br></br>
+          <ResultCard netSalary={'50000000'}></ResultCard>
+        </Box>
+      )}
     </Box>
   )
 }
