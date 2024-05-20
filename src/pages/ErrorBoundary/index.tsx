@@ -1,6 +1,6 @@
 import { useRouteError } from 'react-router-dom'
 import ErrorType from '~/types/error'
-import Page500 from '~/components/product/Page500'
+import Page500 from '~/pages/InternalServer'
 
 const ErrorBoundary = () => {
   const error = useRouteError() as ErrorType
