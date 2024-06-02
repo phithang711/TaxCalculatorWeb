@@ -1,7 +1,11 @@
 {
   "home": {
     "title": "Home",
-    "content": "Welcome to Tax Calculator webapp"
+    "content": "Welcome to Tax Calculator webapp",
+    "gross_income_input": "Add gross imcome",
+    "net_income_input": "Add net income",
+    "cal_on_gross_salary": "Calculator on your gross salary",
+    "cal_on_base_salary": "Calculator on your base salary"
   },
   "about": {
     "title": "About",

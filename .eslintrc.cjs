@@ -7,7 +7,8 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:import/warnings'
+    'plugin:import/warnings',
+    'plugin:storybook/recommended'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts', 'src/dev'],
   parser: '@typescript-eslint/parser',
