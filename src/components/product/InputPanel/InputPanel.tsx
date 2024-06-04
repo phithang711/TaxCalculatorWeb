@@ -1,16 +1,15 @@
-import { useTranslation } from 'react-i18next'
+import { Box, Typography } from '@mui/material'
 import { useState } from 'react'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import NumTextField from '~/components/common/TextField/NumTextField.tsx'
-import RadioGroupButton from '~/components/common/Button/RadioGroupButton.tsx'
+import { useTranslation } from 'react-i18next'
+import RadioGroupButton from '~/components/common/Button/RadioGroupButton'
+import NumTextField from '~/components/common/TextField/NumTextField'
 
 enum CalculateSalaryBase {
   onGrossSalary = 'onGrossSalary',
   onBaseSalary = 'onBaseSalary'
 }
 
-const Home = () => {
+const InputPanel = () => {
   const { t } = useTranslation()
 
   const [totalIncomeInputVal, setTotalIncomeInputVal] = useState(0)
@@ -60,5 +59,4 @@ const Home = () => {
     </Box>
   )
 }
-
-export default Home
+export default InputPanel
