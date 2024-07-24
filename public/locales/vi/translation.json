@@ -6,10 +6,9 @@
   "input_panel": {
     "title": "Input Panel",
     "content": "Please enter your gross income",
-    "gross_income": "Gross income",
-    "income_insurance": "Income insurance",
-    "eco_region": "Region",
-    "number_of_dependents": "Number of dependents"
+    "gross_income": "Thu nhập gross",
+    "eco_region": "Vùng",
+    "number_of_dependents": "Số người phụ thuộc"
   },
   "result_panel": {
     "net_income": "Net income",
