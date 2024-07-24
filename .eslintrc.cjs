@@ -23,13 +23,13 @@ module.exports = {
       {
         arrowParens: 'always',
         semi: false,
-        trailingComma: 'none',
+        trailingComma: 'all',
         tabWidth: 2,
         endOfLine: 'auto',
         useTabs: false,
         singleQuote: true,
         printWidth: 120,
-        jsxSingleQuote: true
+        jsxSingleQuote: true,
       }
     ],
     'import/order': [
