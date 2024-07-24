@@ -10,7 +10,7 @@ i18n
   .use(initReactI18next)
   .init({
     debug: import.meta.env.MODE !== 'production',
-    fallbackLng: 'en'
+    fallbackLng: 'en',
   })
 
 export default i18n
