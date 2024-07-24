@@ -3,6 +3,11 @@
     "title": "Home",
     "content": "Welcome to Tax Calculator webapp"
   },
+  "tax_calculator": {
+    "title": "Tax Calculator",
+    "content": "Calculate your net income after taxes and insurances",
+    "back_to_home_btn": "Back to Home"
+  },
   "input_panel": {
     "title": "Input Panel",
     "content": "Please enter your gross income",

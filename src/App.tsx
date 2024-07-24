@@ -1,5 +1,6 @@
 import { RouterProvider } from 'react-router-dom'
 import { Suspense } from 'react'
+import TaxCalculator from './pages/TaxCalculator'
 import { sentryCreateBrowserRouter } from '~/configs/sentry.config.ts'
 
 import About from '~/pages/About'
@@ -11,6 +12,11 @@ const router = sentryCreateBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: '/tax-calculator',
+    element: <TaxCalculator />,
     errorElement: <ErrorBoundary />,
   },
   {

@@ -137,18 +137,21 @@ const ResultPanel = (props: ResultProps) => {
         ))}
       </List>
 
+      {/* Divider */}
+      <hr style={{ margin: '20px 50% 20px 0px' }} />
+
       <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
         {t('result_panel.total_company_cost')}
       </Typography>
       <Typography variant='h4' gutterBottom>
-        {company?.total}
+      {DefaultCurrencyFormatter(company?.total ?? '')}
       </Typography>
       <List disablePadding>
         {companyDetails.map((item) => (
           <ListItem key={item.label} sx={{ py: 1, px: 0 }}>
             <ListItemText sx={{ mr: 2 }} primary={item.label} secondary={item.desc} />
             <Typography variant='body1' sx={{ fontWeight: 'medium' }}>
-              {item.info}
+              {DefaultCurrencyFormatter(item?.info ?? '')}
             </Typography>
           </ListItem>
         ))}
