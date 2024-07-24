@@ -11,17 +11,17 @@ const router = sentryCreateBrowserRouter([
   {
     path: '/',
     element: <Home />,
-    errorElement: <ErrorBoundary />
+    errorElement: <ErrorBoundary />,
   },
   {
     path: '/about',
     element: <About />,
-    errorElement: <ErrorBoundary />
+    errorElement: <ErrorBoundary />,
   },
   {
     path: '*',
-    element: <Page404 />
-  }
+    element: <Page404 />,
+  },
 ])
 
 const App = () => {
