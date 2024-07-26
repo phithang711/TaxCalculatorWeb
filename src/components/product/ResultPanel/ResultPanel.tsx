@@ -144,7 +144,7 @@ const ResultPanel = (props: ResultProps) => {
         {t('result_panel.total_company_cost')}
       </Typography>
       <Typography variant='h4' gutterBottom>
-      {DefaultCurrencyFormatter(company?.total ?? '')}
+        {DefaultCurrencyFormatter(company?.total ?? '')}
       </Typography>
       <List disablePadding>
         {companyDetails.map((item) => (

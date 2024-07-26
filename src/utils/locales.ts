@@ -15,10 +15,10 @@ const getCurrencyCode = (locale: string | number) => {
 
 // Function to get separators and currency symbol
 interface LocaleSettings {
-  thousandSeparator: string
-  decimalSeparator: string
-  currencySymbol: string
-  currency: string
+  thousandSeparator?: string
+  decimalSeparator?: string
+  currencySymbol?: string
+  currency?: string
 }
 
 const getLocaleSettings = (): LocaleSettings => {
@@ -30,9 +30,9 @@ const getLocaleSettings = (): LocaleSettings => {
   })
 
   const parts = formatter.formatToParts(1234.56)
-  const thousandSeparator = parts.find((part) => part.type === 'group')!.value
-  const decimalSeparator = parts.find((part) => part.type === 'decimal')!.value
-  const currencySymbol = parts.find((part) => part.type === 'currency')!.value
+  const thousandSeparator = parts.find((part) => part.type === 'group')?.value
+  const decimalSeparator = parts.find((part) => part.type === 'decimal')?.value
+  const currencySymbol = parts.find((part) => part.type === 'currency')?.value
 
   return { thousandSeparator, decimalSeparator, currencySymbol, currency }
 }
