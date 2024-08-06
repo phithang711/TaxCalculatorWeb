@@ -202,7 +202,6 @@ const TaxCalculator = () => {
         </Box>
       </Grid>
     </Grid>
-    // </ThemeProvider>
   )
 }
 
