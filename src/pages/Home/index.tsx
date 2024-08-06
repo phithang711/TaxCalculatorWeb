@@ -1,9 +1,11 @@
 import { Box, Button, Grid } from '@mui/material'
-import { t } from 'i18next'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import ROUTES from '~/utils/routes'
+
 const Home = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation() // Fix the typo in the variable name
 
   return (
     <Grid container sx={{ height: '100vh', backgroundColor: 'background.paper', justifyContent: 'center' }}>
