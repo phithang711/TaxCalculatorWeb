@@ -9,8 +9,11 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: import.meta.env.MODE !== 'production',
-    fallbackLng: 'en'
+    debug: false,
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false, // React already safes from xss
+    },
   })
 
 export default i18n

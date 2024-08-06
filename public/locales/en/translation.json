@@ -1,11 +1,48 @@
 {
   "home": {
     "title": "Home",
-    "content": "Welcome to Tax Calculator webapp",
-    "gross_income_input": "Add gross imcome",
-    "net_income_input": "Add net income",
-    "cal_on_gross_salary": "Calculator on your gross salary",
-    "cal_on_base_salary": "Calculator on your base salary"
+    "content": "Welcome to Tax Calculator webapp"
+  },
+  "tax_calculator": {
+    "title": "Tax Calculator",
+    "content": "Calculate your net income after taxes and insurances",
+    "back_to_home_btn": "Back to Home"
+  },
+  "input_panel": {
+    "title": "Input Panel",
+    "content": "Please enter your gross income",
+    "gross_income": "Gross income",
+    "income_insurance": "Income insurance",
+    "eco_region": "Region",
+    "number_of_dependents": "Number of dependents"
+  },
+  "result_panel": {
+    "net_income": "Net income",
+    "income_tax": "Income tax",
+    "income_tax_desc": "Tax on income",
+    "total_company_cost": "Total company cost",
+    "insurances": {
+      "sickness_insurance": "Sickness insurance",
+      "sickness_insur_desc": "Supports during illness",
+
+      "work_accident_insurance": "Work accident insurance",
+      "work_accident_insur_desc": "Covers work-related accidents and diseases",
+
+      "maternity_insurance": "Maternity insurance",
+      "maternity_insur_desc": "Supports during pregnancy and childbirth",
+
+      "unemployment_insurance": "Unemployment insurance",
+      "unemployment_insur_desc": "Assists during unemployment",
+
+      "retirement_insurance": "Retirement insurance",
+      "retirement_insur_desc": "Supports post-retirement",
+
+      "health_insurance": "Health insurance",
+      "health_insur_desc": "Covers healthcare costs",
+
+      "death_insurance": "Death insurance",
+      "death_insur_desc": "Supports family after death"
+    }
   },
   "about": {
     "title": "About",
