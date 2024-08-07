@@ -1,62 +1,85 @@
-import { Box, Typography } from '@mui/material'
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import RadioGroupButton from '~/components/common/Button/RadioGroupButton'
-import NumTextField from '~/components/common/TextField/NumTextField'
+import { FormLabel, Grid, OutlinedInput, styled, TextField, Tooltip } from '@mui/material'
+import InfoIcon from '@mui/icons-material/Info'
+import { t } from 'i18next'
+import { ECO_REGIONS } from '~/constants'
+import { DefaultNumberFormatInput } from '~/utils/NumberFormatters'
+import CurrencyInputAdornment from '~/components/common/CurrencyInputAdornment/CurrencyInputAdornment'
 
-enum CalculateSalaryBase {
-  onGrossSalary = 'onGrossSalary',
-  onBaseSalary = 'onBaseSalary'
-}
+const FormGrid = styled(Grid)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+}))
+
+const FormLabelWithTooltip = styled(FormLabel)(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+}))
 
 const InputPanel = () => {
-  const { t } = useTranslation()
-
-  const [totalIncomeInputVal, setTotalIncomeInputVal] = useState(0)
-  const [salaryInputVal, setSalaryInputVal] = useState(0)
-  const salaryChosenItems: { value: string; label: string }[] = [
-    { value: CalculateSalaryBase.onGrossSalary, label: t('home.cal_on_gross_salary') },
-    { value: CalculateSalaryBase.onBaseSalary, label: t('home.cal_on_base_salary') }
-  ]
-  const [chosenRadioValue, setChosenRadioValue] = useState<string | null>(CalculateSalaryBase.onGrossSalary)
-
   return (
-    <Box
-      bgcolor={'lightgrey'}
-      sx={{
-        padding: 5
-      }}>
-      <Typography variant='h1' color='primary'>
-        {t('home.title')}
-      </Typography>
-      <Typography variant='body2'>{t('home.content')}</Typography>
-      <br></br>
-      <Typography variant='body2'>{t('home.gross_income_input')}</Typography>
-      <NumTextField
-        value={totalIncomeInputVal}
-        onChange={(val: string) => {
-          const value = parseInt(val) || 0
-          setTotalIncomeInputVal(value)
-        }}
-      />
-      <br></br>
-      <RadioGroupButton
-        name='salaryChosen'
-        items={salaryChosenItems}
-        value={chosenRadioValue}
-        onChange={setChosenRadioValue}
-      />
-      <br></br>
-      <Typography variant='body2'>{t('home.net_income_input')}</Typography>
-      <NumTextField
-        value={salaryInputVal}
-        disabled={chosenRadioValue !== CalculateSalaryBase.onBaseSalary}
-        onChange={(val: string) => {
-          const value = parseInt(val) || 0
-          setSalaryInputVal(value)
-        }}
-      />
-    </Box>
+    <Grid container spacing={3}>
+      <FormGrid item xs={12}>
+        <FormLabelWithTooltip htmlFor='gross-income'>
+          {t('input_panel.gross_income')}
+          <Tooltip title='tooltip ne'>
+            <InfoIcon />
+          </Tooltip>
+        </FormLabelWithTooltip>
+        <OutlinedInput
+          id='gross-income'
+          name='gross-income'
+          placeholder='0'
+          endAdornment={<CurrencyInputAdornment />}
+          inputComponent={DefaultNumberFormatInput as never}
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={12}>
+        <FormLabelWithTooltip htmlFor='income-insurance'>
+          {t('input_panel.income_insurance')}
+          <Tooltip title='tooltip ne'>
+            <InfoIcon />
+          </Tooltip>
+        </FormLabelWithTooltip>
+        <OutlinedInput
+          id='income-insurance'
+          name='income-insurance'
+          placeholder='0'
+          endAdornment={<CurrencyInputAdornment />}
+          inputComponent={DefaultNumberFormatInput as never}
+          required
+        />
+      </FormGrid>
+      <FormGrid item xs={12} md={6}>
+        <FormLabel htmlFor='eco-region' required>
+          {t('input_panel.eco_region')}
+        </FormLabel>
+        <TextField
+          id='eco-region'
+          name='eco-region'
+          select
+          SelectProps={{
+            native: true,
+          }}>
+          {ECO_REGIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {t(option.label) + ' ' + option.value}
+            </option>
+          ))}
+        </TextField>
+      </FormGrid>
+      <FormGrid item xs={12} md={6}>
+        <FormLabel htmlFor=''>{t('input_panel.number_of_dependents')}</FormLabel>
+        <OutlinedInput
+          id='number-of-dependents'
+          name='number-of-dependents'
+          type='number'
+          placeholder='0'
+          defaultValue={0}
+        />
+      </FormGrid>
+    </Grid>
   )
 }
 export default InputPanel

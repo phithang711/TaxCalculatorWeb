@@ -1,0 +1,51 @@
+{
+  "home": {
+    "title": "Trang Chủ",
+    "content": "Chào mừng đến với ứng dụng tính thuế"
+  },
+  "tax_calculator": {
+    "title": "Máy Tính Thuế",
+    "content": "Tính thu nhập ròng của bạn sau thuế và bảo hiểm",
+    "back_to_home_btn": "Trở về Trang Chủ"
+  },
+  "input_panel": {
+    "title": "Bảng Nhập",
+    "content": "Vui lòng nhập thu nhập gộp của bạn",
+    "gross_income": "Thu nhập gộp",
+    "income_insurance": "Bảo hiểm thu nhập",
+    "eco_region": "Khu vực",
+    "number_of_dependents": "Số người phụ thuộc"
+  },
+  "result_panel": {
+    "net_income": "Thu nhập ròng",
+    "income_tax": "Thuế thu nhập",
+    "income_tax_desc": "Thuế trên thu nhập",
+    "total_company_cost": "Tổng chi phí công ty",
+    "insurances": {
+      "sickness_insurance": "Bảo hiểm ốm đau",
+      "sickness_insur_desc": "Hỗ trợ trong thời gian ốm đau",
+
+      "work_accident_insurance": "Bảo hiểm tai nạn lao động",
+      "work_accident_insur_desc": "Chi trả cho các tai nạn và bệnh nghề nghiệp",
+
+      "maternity_insurance": "Bảo hiểm thai sản",
+      "maternity_insur_desc": "Hỗ trợ trong thời kỳ mang thai và sinh nở",
+
+      "unemployment_insurance": "Bảo hiểm thất nghiệp",
+      "unemployment_insur_desc": "Hỗ trợ trong thời gian thất nghiệp",
+
+      "retirement_insurance": "Bảo hiểm hưu trí",
+      "retirement_insur_desc": "Hỗ trợ sau khi nghỉ hưu",
+
+      "health_insurance": "Bảo hiểm y tế",
+      "health_insur_desc": "Chi trả các chi phí chăm sóc sức khỏe",
+
+      "death_insurance": "Bảo hiểm tử vong",
+      "death_insur_desc": "Hỗ trợ gia đình sau khi mất"
+    }
+  },
+  "about": {
+    "title": "Về Chúng Tôi",
+    "content": "Một sản phẩm của TekCatZ"
+  }
+}

@@ -8,7 +8,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:import/warnings',
-    'plugin:storybook/recommended'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts', 'src/dev'],
   parser: '@typescript-eslint/parser',
@@ -23,13 +22,13 @@ module.exports = {
       {
         arrowParens: 'always',
         semi: false,
-        trailingComma: 'none',
+        trailingComma: 'all',
         tabWidth: 2,
         endOfLine: 'auto',
         useTabs: false,
         singleQuote: true,
         printWidth: 120,
-        jsxSingleQuote: true
+        jsxSingleQuote: true,
       }
     ],
     'import/order': [
