@@ -1,16 +1,15 @@
 import i18n from 'i18next'
 
 // Locale-to-Currency mapping
-const localeToCurrency: { [key: string]: string } = {
-  'en-US': 'USD',
+const language: { [key: string]: string } = {
+  en: 'USD',
   vi: 'VND',
-  'en-GB': 'GBP',
   // Add more mappings as needed
 }
 
 // Function to get the currency code based on locale
-const getCurrencyCode = (locale: string | number) => {
-  return localeToCurrency[locale] || 'USD' // Default to USD if locale not found
+const getCurrencyCode = (locale?: string | number) => {
+  return language[locale ?? 0] || 'USD' // Default to USD if locale not found
 }
 
 // Function to get separators and currency symbol
@@ -22,7 +21,7 @@ interface LocaleSettings {
 }
 
 const getLocaleSettings = (): LocaleSettings => {
-  const locale = i18n.language
+  const locale = i18n.resolvedLanguage
   const currency = getCurrencyCode(locale)
   const formatter = new Intl.NumberFormat(locale, {
     style: 'currency',
