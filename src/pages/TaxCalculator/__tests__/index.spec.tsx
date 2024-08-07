@@ -13,7 +13,6 @@ describe('TaxCalculator page', () => {
 
     // Assert that the page renders correctly
     const pageTitle = screen.getByText('tax_calculator.title')
-    console.log(pageTitle)
     expect(pageTitle).toBeInTheDocument()
     // Add more assertions as needed
   })
