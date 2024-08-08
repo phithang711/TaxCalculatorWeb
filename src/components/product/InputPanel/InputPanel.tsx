@@ -1,9 +1,11 @@
 import { FormLabel, Grid, OutlinedInput, styled, TextField, Tooltip } from '@mui/material'
 import InfoIcon from '@mui/icons-material/Info'
 import { t } from 'i18next'
+import { useState } from 'react'
 import { ECO_REGIONS } from '~/constants'
 import { DefaultNumberFormatInput } from '~/utils/NumberFormatters'
 import CurrencyInputAdornment from '~/components/common/CurrencyInputAdornment/CurrencyInputAdornment'
+import { Income } from '~/types/taxCal/income'
 
 const FormGrid = styled(Grid)(() => ({
   display: 'flex',
@@ -16,7 +18,24 @@ const FormLabelWithTooltip = styled(FormLabel)(() => ({
   justifyContent: 'space-between',
 }))
 
-const InputPanel = () => {
+type ChangesHandler = (newValue: Income) => void
+interface InputPanelProps {
+  onChange?: ChangesHandler
+}
+
+const InputPanel = (props: InputPanelProps) => {
+  const { onChange } = props
+  const [income, setIncome] = useState<Income>({})
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    //TODO: please recheck this line. Should we use useEffect to call onChange here?
+    // 1st approach:
+    const updateIncome = { ...income, [name]: value }
+    setIncome(updateIncome)
+    onChange?.(updateIncome)
+  }
+
   return (
     <Grid container spacing={3}>
       <FormGrid item xs={12}>
@@ -32,7 +51,8 @@ const InputPanel = () => {
           placeholder='0'
           endAdornment={<CurrencyInputAdornment />}
           inputComponent={DefaultNumberFormatInput as never}
-          required
+          onChange={handleInputChange}
+          value={income?.['gross-income']}
         />
       </FormGrid>
       <FormGrid item xs={12}>
@@ -48,7 +68,8 @@ const InputPanel = () => {
           placeholder='0'
           endAdornment={<CurrencyInputAdornment />}
           inputComponent={DefaultNumberFormatInput as never}
-          required
+          onChange={handleInputChange}
+          value={income?.['income-insurance']}
         />
       </FormGrid>
       <FormGrid item xs={12} md={6}>
@@ -59,6 +80,8 @@ const InputPanel = () => {
           id='eco-region'
           name='eco-region'
           select
+          onChange={handleInputChange}
+          value={income?.['eco-region']}
           SelectProps={{
             native: true,
           }}>
@@ -77,6 +100,8 @@ const InputPanel = () => {
           type='number'
           placeholder='0'
           defaultValue={0}
+          onChange={handleInputChange}
+          value={income?.['number-of-dependents'] ?? 0}
         />
       </FormGrid>
     </Grid>
