@@ -32,34 +32,6 @@ const TaxCalculator = () => {
     navigate(ROUTES.HOME, { replace: true })
   }
 
-  const _resultDetails = {
-    employee: {
-      netIncome: '1234',
-      insurance: {
-        retirementInsur: '',
-        healthInsur: '',
-        deathInsur: '',
-        sicknessInsur: '',
-        workAccidentInsur: '',
-        maternityInsur: '',
-        unemploymentInsur: '',
-      },
-      tax: '',
-    },
-    company: {
-      insurance: {
-        retirementInsur: '',
-        healthInsur: '',
-        deathInsur: '',
-        sicknessInsur: '',
-        workAccidentInsur: '',
-        maternityInsur: '',
-        unemploymentInsur: '',
-      },
-      total: '',
-    },
-  }
-
   return (
     <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
       {/* Result Panel */}
@@ -162,7 +134,7 @@ const TaxCalculator = () => {
               <Typography variant='subtitle2' gutterBottom>
                 {t('result_panel.net_income')}
               </Typography>
-              <Typography variant='body1'>{DefaultCurrencyFormatter(_resultDetails.employee.netIncome)}</Typography>
+              <Typography variant='body1'>{DefaultCurrencyFormatter(resultInfo?.employee?.netIncome)}</Typography>
             </div>
             <ResultPanelMobile {...resultInfo} />
           </CardContent>

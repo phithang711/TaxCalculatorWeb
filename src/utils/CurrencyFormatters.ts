@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import { getCurrencyCode } from './locales'
 
-const DefaultCurrencyFormatter = (number: string | number) => {
+const DefaultCurrencyFormatter = (number?: string | number) => {
   const locale = i18n.language
   if (!number || isNaN(Number(number))) {
     return ''
