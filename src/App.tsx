@@ -35,12 +35,16 @@ const router = sentryCreateBrowserRouter([
 ])
 
 const App = () => {
-  const [mode, setMode] = useState<PaletteMode>('light')
+  const [mode, setMode] = useState<PaletteMode>((localStorage.getItem('theme') as PaletteMode) || 'light')
   const theme = createTheme(getTheme(mode))
 
   const toggleColorMode = useMemo(() => {
     return () => {
-      setMode((prev) => (prev === 'dark' ? 'light' : 'dark'))
+      setMode((prevMode) => {
+        const newMode = prevMode === 'light' ? 'dark' : 'light'
+        localStorage.setItem('theme', newMode)
+        return newMode
+      })
     }
   }, [])
 
