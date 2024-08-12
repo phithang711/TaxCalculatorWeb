@@ -1,25 +1,9 @@
 import { List, ListItem, ListItemText, Typography } from '@mui/material'
 import { t } from 'i18next'
+import TaxInfo from '~/types/taxCal/taxInfos'
 import { DefaultCurrencyFormatter } from '~/utils/CurrencyFormatters'
 
-interface InsuranceProps {
-  sicknessInsur?: string
-  workAccidentInsur?: string
-  maternityInsur?: string
-  unemploymentInsur?: string
-  retirementInsur?: string
-  healthInsur?: string
-  deathInsur?: string
-}
-interface ResultProps {
-  employee: {
-    netIncome?: string
-    insurance?: InsuranceProps
-    tax?: string
-  }
-  company: { insurance?: InsuranceProps; total?: string }
-}
-const ResultPanel = (props: ResultProps) => {
+const ResultPanel = (props: TaxInfo) => {
   const { employee, company } = props
 
   const employeeDetails = [

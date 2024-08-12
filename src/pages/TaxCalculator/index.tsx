@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardContent, Typography, useTheme } from '@mui/material'
 import Grid from '@mui/material/Grid'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import { useTranslation } from 'react-i18next'
@@ -12,6 +12,7 @@ import ResultPanelMobile from '~/components/product/ResultPanel/ResultPanelMobil
 import { DefaultCurrencyFormatter } from '~/utils/CurrencyFormatters'
 import ROUTES from '~/utils/routes'
 import { ThemeToggleContext } from '~/themeToggleContext'
+import useTaxCalculator from '~/hooks/useTaxCalculator'
 
 const TaxCalculator = () => {
   const { t } = useTranslation()
@@ -19,6 +20,8 @@ const TaxCalculator = () => {
 
   const themeMode = useTheme().palette.mode
   const changeTheme = useContext(ThemeToggleContext)
+  const [income, setIncome] = useState({})
+  const resultInfo = useTaxCalculator({ income: income })
 
   const toggleColorMode = () => {
     changeTheme()
@@ -89,7 +92,7 @@ const TaxCalculator = () => {
             width: '100%',
             maxWidth: 500,
           }}>
-          <ResultPanel {..._resultDetails} />
+          <ResultPanel {...resultInfo} />
         </Box>
       </Grid>
 
@@ -175,7 +178,11 @@ const TaxCalculator = () => {
             gap: { xs: 5, md: 'none' },
           }}>
           <React.Fragment>
-            <InputPanel />
+            <InputPanel
+              onChange={(newVal) => {
+                setIncome(newVal)
+              }}
+            />
             <Box
               sx={[
                 {

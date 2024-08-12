@@ -25,7 +25,7 @@ export interface TaxCalInputProps {
   config?: CalculationConfig
 }
 
-interface TaxCalOutputProps {
+export interface TaxCalOutputProps {
   // TODO: This is only a placeholder. Replace with actual types
   totalInsurance: number
   totalTax: number
@@ -39,7 +39,7 @@ const calculateTaxInfo = (input: TaxCalInputProps): TaxCalOutputProps => {
   return {
     totalInsurance: 0,
     totalTax: 0,
-    totalNetIncome: 0,
+    totalNetIncome: input['gross-income'] ?? 0,
   }
 }
 
