@@ -12,7 +12,10 @@ const useTaxCalculator = (props: useTaxCalculatorProps): TaxInfo => {
   const { income } = props
   const [taxInfo, setTaxInfo] = useStates<TaxInfo>({})
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [config, setConfig] = useStates<CalculationConfig>({})
+  const [
+    config,
+    // , setConfig
+  ] = useStates<CalculationConfig>({})
 
   //TODO: Turn it on when the API is ready
   // useEffect(
