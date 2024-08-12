@@ -164,7 +164,7 @@ const TaxCalculator = () => {
               </Typography>
               <Typography variant='body1'>{DefaultCurrencyFormatter(_resultDetails.employee.netIncome)}</Typography>
             </div>
-            <ResultPanelMobile {..._resultDetails} />
+            <ResultPanelMobile {...resultInfo} />
           </CardContent>
         </Card>
         <Box
