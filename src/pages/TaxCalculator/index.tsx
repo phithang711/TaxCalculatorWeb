@@ -5,11 +5,11 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { AnimatedCounter } from 'react-animated-counter'
 import InputPanel from '~/components/product/InputPanel/InputPanel'
 import ResultPanel from '~/components/product/ResultPanel/ResultPanel'
 import ToggleColorMode from '~/components/common/Button/ToggleColorMode'
 import ResultPanelMobile from '~/components/product/ResultPanel/ResultPanelMobile'
-import { DefaultCurrencyFormatter } from '~/utils/CurrencyFormatters'
 import ROUTES from '~/utils/routes'
 import { ThemeToggleContext } from '~/themeToggleContext'
 import useTaxCalculator from '~/hooks/useTaxCalculator'
@@ -18,7 +18,8 @@ const TaxCalculator = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const themeMode = useTheme().palette.mode
+  const theme = useTheme()
+  const themeMode = theme.palette.mode
   const changeTheme = useContext(ThemeToggleContext)
   const [income, setIncome] = useState({})
   const [resultInfo, renewResult] = useTaxCalculator({ income: income })
@@ -30,34 +31,6 @@ const TaxCalculator = () => {
   const handleBack = () => {
     // Back to home and clear all history
     navigate(ROUTES.HOME, { replace: true })
-  }
-
-  const _resultDetails = {
-    employee: {
-      netIncome: '1234',
-      insurance: {
-        retirementInsur: '',
-        healthInsur: '',
-        deathInsur: '',
-        sicknessInsur: '',
-        workAccidentInsur: '',
-        maternityInsur: '',
-        unemploymentInsur: '',
-      },
-      tax: '',
-    },
-    company: {
-      insurance: {
-        retirementInsur: '',
-        healthInsur: '',
-        deathInsur: '',
-        sicknessInsur: '',
-        workAccidentInsur: '',
-        maternityInsur: '',
-        unemploymentInsur: '',
-      },
-      total: '',
-    },
   }
 
   return (
@@ -162,9 +135,15 @@ const TaxCalculator = () => {
               <Typography variant='subtitle2' gutterBottom>
                 {t('result_panel.net_income')}
               </Typography>
-              <Typography variant='body1'>{DefaultCurrencyFormatter(_resultDetails.employee.netIncome)}</Typography>
+              <AnimatedCounter
+                key={theme?.palette?.text?.primary}
+                value={resultInfo?.employee?.netIncome}
+                fontSize={theme?.typography?.h4?.fontSize?.toString()}
+                color={theme?.palette?.text?.primary}
+                includeCommas={true}
+              />
             </div>
-            <ResultPanelMobile {..._resultDetails} />
+            <ResultPanelMobile {...resultInfo} />
           </CardContent>
         </Card>
         <Box
