@@ -30,7 +30,6 @@ const InputPanel = (props: InputPanelProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     //TODO: please recheck this line. Should we use useEffect to call onChange here?
-    // 1st approach:
     const updateIncome = { ...income, [name]: value }
     setIncome(updateIncome)
     onChange?.(updateIncome)
