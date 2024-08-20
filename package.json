@@ -17,7 +17,7 @@
   },
   "resolutions": {
     "string-width": "4.2.3"
- },
+  },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -39,6 +39,7 @@
     "i18next-resources-for-ts": "^1.5.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-animated-counter": "^1.7.9",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.5",
     "react-number-format": "^5.4.0",

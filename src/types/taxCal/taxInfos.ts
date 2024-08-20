@@ -12,13 +12,9 @@ type TaxInfo = {
 }
 
 export type WorkInsurance = {
-  sicknessInsur?: number
-  workAccidentInsur?: number
-  maternityInsur?: number
-  unemploymentInsur?: number
-  retirementInsur?: number
-  healthInsur?: number
-  deathInsur?: number
+  unemploymentInsurance?: number
+  socialInsurance?: number
+  healthInsurance?: number
 }
 
 export default TaxInfo

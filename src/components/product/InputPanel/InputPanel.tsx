@@ -30,7 +30,6 @@ const InputPanel = (props: InputPanelProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     //TODO: please recheck this line. Should we use useEffect to call onChange here?
-    // 1st approach:
     const updateIncome = { ...income, [name]: value }
     setIncome(updateIncome)
     onChange?.(updateIncome)
@@ -52,7 +51,7 @@ const InputPanel = (props: InputPanelProps) => {
           endAdornment={<CurrencyInputAdornment />}
           inputComponent={DefaultNumberFormatInput as never}
           onChange={handleInputChange}
-          value={income?.['gross-income']}
+          value={income?.['gross-income'] ?? ''}
         />
       </FormGrid>
       <FormGrid item xs={12}>
@@ -69,7 +68,7 @@ const InputPanel = (props: InputPanelProps) => {
           endAdornment={<CurrencyInputAdornment />}
           inputComponent={DefaultNumberFormatInput as never}
           onChange={handleInputChange}
-          value={income?.['income-insurance']}
+          value={income?.['income-insurance'] ?? ''}
         />
       </FormGrid>
       <FormGrid item xs={12} md={6}>
@@ -99,7 +98,6 @@ const InputPanel = (props: InputPanelProps) => {
           name='number-of-dependents'
           type='number'
           placeholder='0'
-          defaultValue={0}
           onChange={handleInputChange}
           value={income?.['number-of-dependents'] ?? 0}
         />

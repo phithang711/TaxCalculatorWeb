@@ -1,16 +1,19 @@
-import i18n from 'i18next'
-import { getCurrencyCode } from './locales'
+import { getCurrencyCode, getLocaleSettings } from './locales'
 
-const DefaultCurrencyFormatter = (number?: string | number) => {
-  const locale = i18n.language
+const DefaultCurrencyFormatter = (number: string | number) => {
+  const currencySymbol = getLocaleSettings().currencySymbol
   if (!number || isNaN(Number(number))) {
     return ''
   } else {
-    return new Intl.NumberFormat(locale, {
+    return new Intl.NumberFormat('en', {
       style: 'currency',
-      currency: getCurrencyCode(locale),
-    }).format(Number(number))
+      currency: getCurrencyCode('en'),
+      currencyDisplay: 'symbol',
+      // set currency symbol to the left of the number
+      currencySign: 'standard',
+    })
+      .format(Number(number))
+      .replace('$', currencySymbol ?? '')
   }
 }
-
 export { DefaultCurrencyFormatter }

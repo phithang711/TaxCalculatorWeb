@@ -1,21 +1,20 @@
-import { useEffect } from 'react'
+import { useState } from 'react'
 import useStates from './utils/useStates'
 import { Income } from '~/types/taxCal/income'
 import TaxInfo from '~/types/taxCal/taxInfos'
-import calculateTaxInfo, { CalculationConfig, TaxCalOutputProps } from '~/usecases/calculateTaxUsecase'
+import calculateNetIncome, { NetIncomeInfo, TaxConfig } from '~/usecases/calculateTaxUsecase'
 
 interface useTaxCalculatorProps {
   income: Income
 }
 
-const useTaxCalculator = (props: useTaxCalculatorProps): TaxInfo => {
+const useTaxCalculator = (
+  props: useTaxCalculatorProps,
+): [TaxInfo, ({ inputIncome, inputConfig }: { inputIncome?: Income; inputConfig?: TaxConfig }) => void] => {
   const { income } = props
   const [taxInfo, setTaxInfo] = useStates<TaxInfo>({})
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [
-    config,
-    // , setConfig
-  ] = useStates<CalculationConfig>({})
+  const [config, _] = useState()
 
   //TODO: Turn it on when the API is ready
   // useEffect(
@@ -29,43 +28,28 @@ const useTaxCalculator = (props: useTaxCalculatorProps): TaxInfo => {
   //   ],
   // )
 
-  useEffect(() => {
-    const taxInfo = calculateTaxInfo({
-      ...income,
-      config,
+  const reUpdateTaxInfo = ({ inputIncome, inputConfig }: { inputIncome?: Income; inputConfig?: TaxConfig }) => {
+    const taxInfo = calculateNetIncome({
+      grossIncome: inputIncome?.['gross-income'] ?? income?.['gross-income'],
+      dependents: inputIncome?.['number-of-dependents'] ?? income?.['number-of-dependents'],
+      config: inputConfig ?? config,
     })
     setTaxInfo(mapToTaxInfo(taxInfo))
-  }, [income, config, setTaxInfo])
+  }
 
-  return taxInfo
+  return [taxInfo, reUpdateTaxInfo]
 }
 
-const mapToTaxInfo = (useCaseOutput: TaxCalOutputProps): TaxInfo => {
+const mapToTaxInfo = (useCaseOutput: NetIncomeInfo): TaxInfo => {
   return {
     employee: {
-      netIncome: useCaseOutput.totalNetIncome,
+      netIncome: useCaseOutput.netIncome,
       insurance: {
-        retirementInsur: Number(useCaseOutput.totalInsurance),
-        healthInsur: 0,
-        deathInsur: 0,
-        sicknessInsur: 0,
-        workAccidentInsur: 0,
-        maternityInsur: 0,
-        unemploymentInsur: 0,
+        unemploymentInsurance: useCaseOutput?.insurance?.unemploymentInsurance,
+        socialInsurance: useCaseOutput?.insurance?.socialInsurance,
+        healthInsurance: useCaseOutput?.insurance?.healthInsurance,
       },
-      tax: Number(useCaseOutput.totalTax),
-    },
-    company: {
-      insurance: {
-        retirementInsur: 0,
-        healthInsur: 0,
-        deathInsur: 0,
-        sicknessInsur: 0,
-        workAccidentInsur: 0,
-        maternityInsur: 0,
-        unemploymentInsur: 0,
-      },
-      total: 0,
+      tax: useCaseOutput.tax,
     },
   }
 }
