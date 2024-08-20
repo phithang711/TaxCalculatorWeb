@@ -115,7 +115,6 @@ function calculateNetIncome({
   dependents?: number
   config?: TaxConfig
 }): NetIncomeInfo {
-  console.log('grossIncome', grossIncome)
   const grossIncomeNumber = Number(grossIncome)
   if (isNaN(grossIncomeNumber) || grossIncomeNumber < 0) {
     return {}
@@ -126,7 +125,6 @@ function calculateNetIncome({
   const tax = calculateIncomeTax(taxableIncome, config.taxBrackets)
   const netIncome = grossIncomeNumber - insurance.total - tax
 
-  console.log('netIncome', netIncome)
   return {
     netIncome,
     tax,

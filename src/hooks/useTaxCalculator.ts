@@ -34,7 +34,6 @@ const useTaxCalculator = (
       dependents: inputIncome?.['number-of-dependents'] ?? income?.['number-of-dependents'],
       config: inputConfig ?? config,
     })
-    console.log('taxInfo', taxInfo)
     setTaxInfo(mapToTaxInfo(taxInfo))
   }
 
