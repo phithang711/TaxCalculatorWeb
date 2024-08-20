@@ -1,32 +1,17 @@
 import { render } from '@testing-library/react'
 import ResultPanel from '../ResultPanel'
+import TaxInfo from '~/types/taxCal/taxInfos'
 
 test('renders ResultPanel correctly', () => {
-  const props = {
+  const props: TaxInfo = {
     employee: {
-      netIncome: '1000',
+      netIncome: 100000,
       insurance: {
-        sicknessInsur: '100',
-        workAccidentInsur: '200',
-        maternityInsur: '300',
-        unemploymentInsur: '400',
-        retirementInsur: '500',
-        healthInsur: '600',
-        deathInsur: '700',
+        unemploymentInsurance: 1000,
+        socialInsurance: 2000,
+        healthInsurance: 3000,
       },
-      tax: '200',
-    },
-    company: {
-      insurance: {
-        sicknessInsur: '100',
-        workAccidentInsur: '200',
-        maternityInsur: '300',
-        unemploymentInsur: '400',
-        retirementInsur: '500',
-        healthInsur: '600',
-        deathInsur: '700',
-      },
-      total: '1200',
+      tax: 10000,
     },
   }
 
