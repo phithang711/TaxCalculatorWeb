@@ -2,7 +2,8 @@ import i18n from 'i18next'
 
 // Locale-to-Currency mapping
 const language: { [key: string]: string } = {
-  en: 'USD',
+  //TODO: Add support for English/USD in the future
+  en: 'VND',
   vi: 'VND',
   // Add more mappings as needed
 }
@@ -29,8 +30,9 @@ const getLocaleSettings = (): LocaleSettings => {
   })
 
   const parts = formatter.formatToParts(1234.56)
-  const thousandSeparator = parts.find((part) => part.type === 'group')?.value
-  const decimalSeparator = parts.find((part) => part.type === 'decimal')?.value
+  //TODO: Add support for other locales
+  const thousandSeparator = ','
+  const decimalSeparator = '.'
   const currencySymbol = parts.find((part) => part.type === 'currency')?.value
 
   return { thousandSeparator, decimalSeparator, currencySymbol, currency }

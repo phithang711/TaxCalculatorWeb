@@ -21,7 +21,7 @@ const TaxCalculator = () => {
   const themeMode = useTheme().palette.mode
   const changeTheme = useContext(ThemeToggleContext)
   const [income, setIncome] = useState({})
-  const resultInfo = useTaxCalculator({ income: income })
+  const [resultInfo, renewResult] = useTaxCalculator({ income: income })
 
   const toggleColorMode = () => {
     changeTheme()
@@ -181,6 +181,7 @@ const TaxCalculator = () => {
             <InputPanel
               onChange={(newVal) => {
                 setIncome(newVal)
+                renewResult({ inputIncome: newVal })
               }}
             />
             <Box

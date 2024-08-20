@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import useStates from './utils/useStates'
 import { Income } from '~/types/taxCal/income'
 import TaxInfo from '~/types/taxCal/taxInfos'
@@ -8,11 +7,27 @@ interface useTaxCalculatorProps {
   income: Income
 }
 
-const useTaxCalculator = (props: useTaxCalculatorProps): TaxInfo => {
+const useTaxCalculator = (
+  props: useTaxCalculatorProps,
+): [TaxInfo, ({ inputIncome, inputConfig }: { inputIncome?: Income; inputConfig?: CalculationConfig }) => void] => {
   const { income } = props
   const [taxInfo, setTaxInfo] = useStates<TaxInfo>({})
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [config, setConfig] = useStates<CalculationConfig>({})
+  const [config, setConfig] = useStates<CalculationConfig>({
+    insurance: {
+      sickness: 0,
+      workAccident: 0,
+      maternity: 0,
+      unemployment: 0,
+      retirement: 0,
+      health: 0,
+      death: 0,
+    },
+    tax: {
+      taxRate: 0,
+      taxDeduction: 0,
+    },
+  })
 
   //TODO: Turn it on when the API is ready
   // useEffect(
@@ -26,15 +41,15 @@ const useTaxCalculator = (props: useTaxCalculatorProps): TaxInfo => {
   //   ],
   // )
 
-  useEffect(() => {
+  const reUpdateTaxInfo = ({ inputIncome, inputConfig }: { inputIncome?: Income; inputConfig?: CalculationConfig }) => {
     const taxInfo = calculateTaxInfo({
-      ...income,
-      config,
+      ...(inputIncome ?? income),
+      config: inputConfig ?? config,
     })
     setTaxInfo(mapToTaxInfo(taxInfo))
-  }, [income, config, setTaxInfo])
+  }
 
-  return taxInfo
+  return [taxInfo, reUpdateTaxInfo]
 }
 
 const mapToTaxInfo = (useCaseOutput: TaxCalOutputProps): TaxInfo => {
