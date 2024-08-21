@@ -31,6 +31,8 @@ const useTaxCalculator = (
   const reUpdateTaxInfo = ({ inputIncome, inputConfig }: { inputIncome?: Income; inputConfig?: TaxConfig }) => {
     const taxInfo = calculateNetIncome({
       grossIncome: inputIncome?.['gross-income'] ?? income?.['gross-income'],
+      insuranceBase: inputIncome?.['income-insurance'] ?? income?.['income-insurance'],
+      regionCode: inputIncome?.['eco-region'] ?? income?.['eco-region'],
       dependents: inputIncome?.['number-of-dependents'] ?? income?.['number-of-dependents'],
       config: inputConfig ?? config,
     })
