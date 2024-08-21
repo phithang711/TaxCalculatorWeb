@@ -24,9 +24,6 @@ const TaxCalculator = () => {
   const [income, setIncome] = useState({})
   const [resultInfo, renewResult] = useTaxCalculator({ income: income })
 
-  const animatedCounterTest = AnimatedCounter({ value: 1000 })
-  console.log(animatedCounterTest)
-
   const toggleColorMode = () => {
     changeTheme()
   }
