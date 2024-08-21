@@ -19,6 +19,13 @@ export interface TaxConfig {
   taxBrackets: TaxBracket[]
   insuranceRates: InsuranceRate
   deductions: DeductionConfig
+  economicRegion?: EconomicRegion[]
+  versionDate: Date
+}
+
+export interface EconomicRegion {
+  regionCode: number
+  minimumWage: number
 }
 
 export interface NetIncomeInfo {
@@ -56,11 +63,40 @@ const defaultConfig: TaxConfig = {
     personalDeduction: 11000000,
     dependentDeduction: 4400000,
   },
+  economicRegion: [
+    {
+      regionCode: 1,
+      minimumWage: 4960000,
+    },
+    {
+      regionCode: 2,
+      minimumWage: 4410000,
+    },
+    {
+      regionCode: 3,
+      minimumWage: 3860000,
+    },
+    {
+      regionCode: 4,
+      minimumWage: 3450000,
+    },
+  ],
+  versionDate: new Date('2024-08-01'),
 }
 
 // Calculate detailed insurance contributions
-function calculateDetailedInsurance(grossIncome: number, rates: InsuranceRate): InsuranceDetails {
-  const baseForInsurance = Math.min(grossIncome, 20 * 1490000) // Cap at 20 times minimum wage
+function calculateDetailedInsurance({
+  grossIncome,
+  insuranceBase = grossIncome,
+  rates,
+  minimumWage,
+}: {
+  grossIncome: number
+  insuranceBase: number
+  rates: InsuranceRate
+  minimumWage: number
+}): InsuranceDetails {
+  const baseForInsurance = Math.min(Math.max(insuranceBase, minimumWage), grossIncome)
   const socialInsurance = baseForInsurance * rates.socialInsurance
   const healthInsurance = baseForInsurance * rates.healthInsurance
   const unemploymentInsurance = baseForInsurance * rates.unemploymentInsurance
@@ -110,17 +146,29 @@ function calculateNetIncome({
   grossIncome,
   dependents,
   config = defaultConfig,
+  insuranceBase = grossIncome,
+  regionCode,
 }: {
   grossIncome?: number
   dependents?: number
   config?: TaxConfig
+  insuranceBase?: number
+  regionCode?: number
 }): NetIncomeInfo {
   const grossIncomeNumber = Number(grossIncome)
+  const insuranceBaseNumber = Number(insuranceBase)
   if (isNaN(grossIncomeNumber) || grossIncomeNumber < 0) {
     return {}
   }
 
-  const insurance = calculateDetailedInsurance(grossIncomeNumber, config.insuranceRates)
+  const minimumWage = config.economicRegion?.find((region) => region.regionCode == regionCode)?.minimumWage
+
+  const insurance = calculateDetailedInsurance({
+    grossIncome: grossIncomeNumber,
+    insuranceBase: isNaN(insuranceBaseNumber) || !insuranceBaseNumber ? grossIncomeNumber : insuranceBaseNumber,
+    rates: config.insuranceRates,
+    minimumWage: minimumWage ?? config.economicRegion?.[0].minimumWage ?? 4960000,
+  })
   const taxableIncome = calculateTaxableIncome(grossIncomeNumber, insurance.total, config.deductions, dependents || 0)
   const tax = calculateIncomeTax(taxableIncome, config.taxBrackets)
   const netIncome = grossIncomeNumber - insurance.total - tax

@@ -63,6 +63,7 @@ const ResultPanel = (props: TaxInfo) => {
           fontSize={theme?.typography?.h4?.fontSize?.toString()}
           color={theme?.palette?.text?.primary}
           includeCommas={true}
+          includeDecimals={false}
         />
       </Grid>
       <List disablePadding>
