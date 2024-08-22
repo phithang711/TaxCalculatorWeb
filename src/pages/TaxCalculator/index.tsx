@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardContent, Typography, useTheme } from '@mui/material'
 import Grid from '@mui/material/Grid'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useReducer } from 'react'
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import { useTranslation } from 'react-i18next'
@@ -12,7 +12,7 @@ import ToggleColorMode from '~/components/common/Button/ToggleColorMode'
 import ResultPanelMobile from '~/components/product/ResultPanel/ResultPanelMobile'
 import ROUTES from '~/utils/routes'
 import { ThemeToggleContext } from '~/themeToggleContext'
-import useTaxCalculator from '~/hooks/useTaxCalculator'
+import netIncomeCalReducer from '~/reducers/taxCal/netIncomeCalReducer'
 
 const TaxCalculator = () => {
   const { t } = useTranslation()
@@ -21,8 +21,13 @@ const TaxCalculator = () => {
   const theme = useTheme()
   const themeMode = theme.palette.mode
   const changeTheme = useContext(ThemeToggleContext)
-  const [income, setIncome] = useState({})
-  const [resultInfo, renewResult] = useTaxCalculator({ income: income })
+
+  const [netIncome, dispatchNetIncome] = useReducer(netIncomeCalReducer, {})
+  // Get config. This config may be scheduled to be fetched from an API.
+  // If a new config is obtained, it will be dispatched to the reducer.
+  // The useConfig hook might use useEffect to fetch the config based on the config's date.
+  // const [config, setConfig] = useConfig({})
+  // Consider whether the config should be stored in the [netIncome] state (NetIncomeCalState includes `config`) or directly in the component.
 
   const toggleColorMode = () => {
     changeTheme()
@@ -32,6 +37,8 @@ const TaxCalculator = () => {
     // Back to home and clear all history
     navigate(ROUTES.HOME, { replace: true })
   }
+
+  const netIncomeInfo = netIncome?.netIncomeInfo
 
   return (
     <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
@@ -65,7 +72,7 @@ const TaxCalculator = () => {
             width: '100%',
             maxWidth: 500,
           }}>
-          <ResultPanel {...resultInfo} />
+          <ResultPanel {...netIncomeInfo} />
         </Box>
       </Grid>
 
@@ -137,13 +144,13 @@ const TaxCalculator = () => {
               </Typography>
               <AnimatedCounter
                 key={theme?.palette?.text?.primary}
-                value={resultInfo?.employee?.netIncome}
+                value={netIncomeInfo?.employee?.netIncome}
                 fontSize={theme?.typography?.h4?.fontSize?.toString()}
                 color={theme?.palette?.text?.primary}
                 includeCommas={true}
               />
             </div>
-            <ResultPanelMobile {...resultInfo} />
+            <ResultPanelMobile {...netIncomeInfo} />
           </CardContent>
         </Card>
         <Box
@@ -159,8 +166,7 @@ const TaxCalculator = () => {
           <React.Fragment>
             <InputPanel
               onChange={(newVal) => {
-                setIncome(newVal)
-                renewResult({ inputIncome: newVal })
+                dispatchNetIncome({ type: 'UPDATE_NEW_INCOME', income: newVal })
               }}
             />
             <Box
