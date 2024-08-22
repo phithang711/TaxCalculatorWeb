@@ -71,6 +71,23 @@ const InputPanel = (props: InputPanelProps) => {
           value={income?.['income-insurance'] ?? ''}
         />
       </FormGrid>
+      <FormGrid item xs={12}>
+        <FormLabelWithTooltip htmlFor='income-allowance'>
+          {t('input_panel.income_allowance')}
+          <Tooltip title='tooltip ne'>
+            <InfoIcon />
+          </Tooltip>
+        </FormLabelWithTooltip>
+        <OutlinedInput
+          id='income-allowance'
+          name='income-allowance'
+          placeholder='0'
+          endAdornment={<CurrencyInputAdornment />}
+          inputComponent={DefaultNumberFormatInput as never}
+          onChange={handleInputChange}
+          value={income?.['income-insurance'] ?? ''}
+        />
+      </FormGrid>
       <FormGrid item xs={12} md={6}>
         <FormLabel htmlFor='eco-region' required>
           {t('input_panel.eco_region')}

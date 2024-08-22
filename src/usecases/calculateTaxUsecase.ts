@@ -147,12 +147,14 @@ function calculateNetIncome({
   dependents,
   config = defaultConfig,
   insuranceBase = grossIncome,
+  allowance,
   regionCode,
 }: {
   grossIncome?: number
   dependents?: number
   config?: TaxConfig
   insuranceBase?: number
+  allowance?: number
   regionCode?: number
 }): NetIncomeInfo {
   const grossIncomeNumber = Number(grossIncome)
@@ -160,6 +162,7 @@ function calculateNetIncome({
   if (isNaN(grossIncomeNumber) || grossIncomeNumber < 0) {
     return {}
   }
+  console.log('do something with allowance', allowance)
 
   const minimumWage = config.economicRegion?.find((region) => region.regionCode == regionCode)?.minimumWage
 

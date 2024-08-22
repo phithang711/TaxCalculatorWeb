@@ -26,6 +26,7 @@ function netIncomeCalReducer(state: NetIncomeCalState, action: netIncomeCalReduc
         const taxInfo = calculateNetIncome({
           grossIncome: income?.['gross-income'],
           insuranceBase: income?.['income-insurance'],
+          allowance: income?.['income-allowance'],
           regionCode: income?.['eco-region'],
           dependents: income?.['number-of-dependents'],
           config: config,

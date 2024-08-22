@@ -12,6 +12,7 @@
     "title": "Input Panel",
     "content": "Please enter your gross income",
     "gross_income": "Gross income",
+    "income_allowance": "Income allowance",
     "income_insurance": "Income insurance",
     "eco_region": "Region",
     "number_of_dependents": "Number of dependents"

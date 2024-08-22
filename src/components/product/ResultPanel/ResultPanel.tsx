@@ -53,7 +53,7 @@ const ResultPanel = (props: TaxInfo) => {
   return (
     <>
       <Typography variant='h4' sx={{ color: 'text.secondary' }}>
-        {t('result_panel.net_income')}
+        {t('result_panel.net_income')} (VND)
       </Typography>
 
       <Grid>
