@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardContent, Typography, useTheme } from '@mui/material'
 import Grid from '@mui/material/Grid'
-import React, { useContext, useReducer } from 'react'
+import React, { useContext } from 'react'
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import { useTranslation } from 'react-i18next'
@@ -12,7 +12,7 @@ import ToggleColorMode from '~/components/common/Button/ToggleColorMode'
 import ResultPanelMobile from '~/components/product/ResultPanel/ResultPanelMobile'
 import ROUTES from '~/utils/routes'
 import { ThemeToggleContext } from '~/themeToggleContext'
-import netIncomeCalReducer from '~/reducers/taxCal/netIncomeCalReducer'
+import useTaxCal from '~/hooks/useTaxCal'
 
 const TaxCalculator = () => {
   const { t } = useTranslation()
@@ -22,7 +22,7 @@ const TaxCalculator = () => {
   const themeMode = theme.palette.mode
   const changeTheme = useContext(ThemeToggleContext)
 
-  const [netIncome, dispatchNetIncome] = useReducer(netIncomeCalReducer, {})
+  const { netIncome, updateNewIncome } = useTaxCal()
   // Get config. This config may be scheduled to be fetched from an API.
   // If a new config is obtained, it will be dispatched to the reducer.
   // The useConfig hook might use useEffect to fetch the config based on the config's date.
@@ -166,7 +166,7 @@ const TaxCalculator = () => {
           <React.Fragment>
             <InputPanel
               onChange={(newVal) => {
-                dispatchNetIncome({ type: 'UPDATE_NEW_INCOME', income: newVal })
+                updateNewIncome(newVal)
               }}
             />
             <Box
