@@ -162,7 +162,6 @@ function calculateNetIncome({
   if (isNaN(grossIncomeNumber) || grossIncomeNumber < 0) {
     return {}
   }
-  console.log('do something with allowance', allowance)
 
   const minimumWage = config.economicRegion?.find((region) => region.regionCode == regionCode)?.minimumWage
 
