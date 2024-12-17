@@ -5,9 +5,9 @@ export const api = createApi({
   reducerPath: 'taxApi',
   endpoints: (build) => ({
     example: build.query({
-      query: (name) => `example/${name}`
-    })
-  })
+      query: (name) => `example/${name}`,
+    }),
+  }),
 })
 
 export const { useExampleQuery } = api

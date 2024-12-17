@@ -3,12 +3,17 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 
+console.log('SENTRY_AUTH_TOKEN: ', process.env.SENTRY_AUTH_TOKEN)
+console.log(process.env.NODE_ENV)
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), sentryVitePlugin({
     authToken: process.env.SENTRY_AUTH_TOKEN,
     org: "tekcatz",
     project: "tax-calculator-web",
+    debug: true,
+    disable: false
   })],
 
   server: {
@@ -16,7 +21,7 @@ export default defineConfig({
   },
 
   css: {
-    devSourcemap: true
+    devSourcemap: process.env.NODE_ENV !== 'production'
   },
 
   resolve: {
@@ -27,6 +32,6 @@ export default defineConfig({
   },
 
   build: {
-    sourcemap: true
-  }
+    sourcemap: process.env.NODE_ENV !== 'production'
+  },
 })

@@ -8,7 +8,7 @@ const sentryReduxEnhancer = createReduxEnhancer({
 
 export const store = configureStore({
   reducer: {
-    [api.reducerPath]: api.reducer
+    [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(api.middleware)
@@ -16,5 +16,5 @@ export const store = configureStore({
   enhancers: (getDefaultEnhancers) => {
     return getDefaultEnhancers().concat(sentryReduxEnhancer)
   },
-  devTools: process.env.NODE_ENV !== 'production'
+  devTools: import.meta.env.MODE !== 'production',
 })
