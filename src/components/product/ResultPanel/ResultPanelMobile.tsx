@@ -7,30 +7,10 @@ import CloseIcon from '@mui/icons-material/Close'
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded'
 import { useState } from 'react'
 import ResultPanel from './ResultPanel'
+import TaxInfo from '~/types/taxCal/taxInfos'
 
-interface InsuranceProps {
-  sicknessInsur?: string
-  workAccidentInsur?: string
-  maternityInsur?: string
-  unemploymentInsur?: string
-  retirementInsur?: string
-  healthInsur?: string
-  deathInsur?: string
-}
-
-interface ResultProps {
-  employee: {
-    netIncome?: string
-    insurance?: InsuranceProps
-    tax?: string
-  }
-  company: { insurance?: InsuranceProps; total?: string }
-}
-
-export default function ResultPanelMobile(props: ResultProps) {
+export default function ResultPanelMobile(props: TaxInfo) {
   const [open, setOpen] = useState(false)
-
-  const { employee, company } = props
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)
@@ -41,7 +21,7 @@ export default function ResultPanelMobile(props: ResultProps) {
       <IconButton onClick={toggleDrawer(false)} sx={{ position: 'absolute', right: 8, top: 8 }}>
         <CloseIcon />
       </IconButton>
-      <ResultPanel employee={employee} company={company} />
+      <ResultPanel {...props} />
     </Box>
   )
 

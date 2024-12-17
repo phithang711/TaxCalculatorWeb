@@ -1,26 +1,13 @@
-import { List, ListItem, ListItemText, Typography } from '@mui/material'
+import { Grid, List, ListItem, ListItemText, Typography } from '@mui/material'
 import { t } from 'i18next'
+import { AnimatedCounter } from 'react-animated-counter'
+import { useTheme } from '@mui/material/styles'
+import TaxInfo from '~/types/taxCal/taxInfos'
 import { DefaultCurrencyFormatter } from '~/utils/CurrencyFormatters'
 
-interface InsuranceProps {
-  sicknessInsur?: string
-  workAccidentInsur?: string
-  maternityInsur?: string
-  unemploymentInsur?: string
-  retirementInsur?: string
-  healthInsur?: string
-  deathInsur?: string
-}
-interface ResultProps {
-  employee: {
-    netIncome?: string
-    insurance?: InsuranceProps
-    tax?: string
-  }
-  company: { insurance?: InsuranceProps; total?: string }
-}
-const ResultPanel = (props: ResultProps) => {
-  const { employee, company } = props
+const ResultPanel = (props: TaxInfo) => {
+  const { employee } = props
+  const theme = useTheme()
 
   const employeeDetails = [
     {
@@ -29,103 +16,56 @@ const ResultPanel = (props: ResultProps) => {
       desc: t('result_panel.income_tax_desc'),
       info: employee?.tax,
     },
-    {
-      name: 'sicknessInsur',
-      label: t('result_panel.insurances.sickness_insurance'),
-      desc: t('result_panel.insurances.sickness_insur_desc'),
-      info: employee?.insurance?.sicknessInsur,
-    },
-    {
-      name: 'workAccidentInsur',
-      label: t('result_panel.insurances.work_accident_insurance'),
-      desc: t('result_panel.insurances.work_accident_insur_desc'),
-      info: employee?.insurance?.workAccidentInsur,
-    },
-    {
-      name: 'maternityInsur',
-      label: t('result_panel.insurances.maternity_insurance'),
-      desc: t('result_panel.insurances.maternity_insur_desc'),
-      info: employee?.insurance?.maternityInsur,
-    },
-    {
-      name: 'unemploymentInsur',
-      label: t('result_panel.insurances.unemployment_insurance'),
-      desc: t('result_panel.insurances.unemployment_insur_desc'),
-      info: employee?.insurance?.unemploymentInsur,
-    },
-    {
-      name: 'retirementInsur',
-      label: t('result_panel.insurances.retirement_insurance'),
-      desc: t('result_panel.insurances.retirement_insur_desc'),
-      info: employee?.insurance?.retirementInsur,
-    },
-    {
-      name: 'healthInsur',
-      label: t('result_panel.insurances.health_insurance'),
-      desc: t('result_panel.insurances.health_insur_desc'),
-      info: employee?.insurance?.healthInsur,
-    },
-    {
-      name: 'deathInsur',
-      label: t('result_panel.insurances.death_insurance'),
-      desc: t('result_panel.insurances.death_insur_desc'),
-      info: employee?.insurance?.deathInsur,
-    },
-  ]
+    // TODO: To Be Implemented if needed
+    // {
+    //   name: 'sicknessInsur',
+    //   label: t('result_panel.insurances.sickness_insurance'),
+    //   desc: t('result_panel.insurances.sickness_insur_desc'),
+    //   info: employee?.insurance?.sicknessInsur,
+    // },
+    // {
+    //   name: 'workAccidentInsur',
+    //   label: t('result_panel.insurances.work_accident_insurance'),
+    //   desc: t('result_panel.insurances.work_accident_insur_desc'),
+    //   info: employee?.insurance?.workAccidentInsur,
+    // },
 
-  const companyDetails = [
-    {
-      name: 'sicknessInsur',
-      label: t('result_panel.insurances.sickness_insurance'),
-      desc: t('result_panel.insurances.sickness_insur_desc'),
-      info: company?.insurance?.sicknessInsur,
-    },
-    {
-      name: 'workAccidentInsur',
-      label: t('result_panel.insurances.work_accident_insurance'),
-      desc: t('result_panel.insurances.work_accident_insur_desc'),
-      info: company?.insurance?.workAccidentInsur,
-    },
-    {
-      name: 'maternityInsur',
-      label: t('result_panel.insurances.maternity_insurance'),
-      desc: t('result_panel.insurances.maternity_insur_desc'),
-      info: company?.insurance?.maternityInsur,
-    },
     {
       name: 'unemploymentInsur',
       label: t('result_panel.insurances.unemployment_insurance'),
       desc: t('result_panel.insurances.unemployment_insur_desc'),
-      info: company?.insurance?.unemploymentInsur,
+      info: employee?.insurance?.unemploymentInsurance,
     },
     {
       name: 'retirementInsur',
       label: t('result_panel.insurances.retirement_insurance'),
       desc: t('result_panel.insurances.retirement_insur_desc'),
-      info: company?.insurance?.retirementInsur,
+      info: employee?.insurance?.socialInsurance,
     },
     {
       name: 'healthInsur',
       label: t('result_panel.insurances.health_insurance'),
       desc: t('result_panel.insurances.health_insur_desc'),
-      info: company?.insurance?.healthInsur,
-    },
-    {
-      name: 'deathInsur',
-      label: t('result_panel.insurances.death_insurance'),
-      desc: t('result_panel.insurances.death_insur_desc'),
-      info: company?.insurance?.deathInsur,
+      info: employee?.insurance?.healthInsurance,
     },
   ]
 
   return (
     <>
-      <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
-        {t('result_panel.net_income')}
+      <Typography variant='h4' sx={{ color: 'text.secondary' }}>
+        {t('result_panel.net_income')} (VND)
       </Typography>
-      <Typography variant='h4' gutterBottom>
-        {DefaultCurrencyFormatter(employee?.netIncome ?? '')}
-      </Typography>
+
+      <Grid>
+        <AnimatedCounter
+          key={theme?.palette?.text?.primary}
+          value={employee?.netIncome}
+          fontSize={theme?.typography?.h4?.fontSize?.toString()}
+          color={theme?.palette?.text?.primary}
+          includeCommas={true}
+          includeDecimals={false}
+        />
+      </Grid>
       <List disablePadding>
         {employeeDetails.map((item) => (
           <ListItem key={item.label} sx={{ py: 1, px: 0 }}>
@@ -139,23 +79,6 @@ const ResultPanel = (props: ResultProps) => {
 
       {/* Divider */}
       <hr style={{ margin: '20px 50% 20px 0px' }} />
-
-      <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
-        {t('result_panel.total_company_cost')}
-      </Typography>
-      <Typography variant='h4' gutterBottom>
-        {DefaultCurrencyFormatter(company?.total ?? '')}
-      </Typography>
-      <List disablePadding>
-        {companyDetails.map((item) => (
-          <ListItem key={item.label} sx={{ py: 1, px: 0 }}>
-            <ListItemText sx={{ mr: 2 }} primary={item.label} secondary={item.desc} />
-            <Typography variant='body1' sx={{ fontWeight: 'medium' }}>
-              {DefaultCurrencyFormatter(item?.info ?? '')}
-            </Typography>
-          </ListItem>
-        ))}
-      </List>
     </>
   )
 }
